@@ -1,0 +1,15 @@
+package com.sample
+ 
+import com.sample.Person;
+import java.math.BigDecimal;
+
+rule "Hello World"
+    //dialect "mvel"
+    when
+        $p : Person( value == 10B )
+    then
+            $p.value = 20.0B;
+    
+        $p.setValue(new BigDecimal("20.0"));
+        System.out.println($p.getValue());
+end

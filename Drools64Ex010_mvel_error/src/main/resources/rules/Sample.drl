@@ -1,0 +1,13 @@
+package com.sample
+ 
+import com.sample.DroolsTest.Message;
+ 
+rule "Hello World"
+    when
+        m : Message( status == Message.HELLO || myMessage : messageX == "SSS" )
+    then
+        System.out.println( myMessage + kcontext.getKnowledgeRuntime().toString());
+        m.setMessage( "Goodbye cruel world" );
+        m.setStatus( Message.GOODBYE );
+end
+

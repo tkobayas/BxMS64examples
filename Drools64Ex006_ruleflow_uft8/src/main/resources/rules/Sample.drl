@@ -1,0 +1,27 @@
+package com.sample
+ 
+import com.sample.DroolsTest.Message;
+ 
+rule "あああ"
+    ruleflow-group "group1"
+    when
+        Message(  )
+    then
+        System.out.println( kcontext.getRule() );
+end
+
+rule "いいい"
+    ruleflow-group "group2"
+    when
+        Message( )
+    then
+        System.out.println( kcontext.getRule() );
+end
+
+rule "ううう"
+    ruleflow-group "group3"
+    when
+        Message( )
+    then
+        System.out.println( kcontext.getRule() );
+end

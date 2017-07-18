@@ -1,0 +1,81 @@
+<object-stream>
+<org.drools.core.audit.WorkingMemoryLog>
+  <version>6.1</version>
+  <events>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>1</factId>
+      <objectToString>com.sample.DroolsTest$Message@30bcf3c1</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.RuleFlowGroupLogEvent>
+      <type>12</type>
+      <groupName>group1</groupName>
+      <size>1</size>
+    </org.drools.core.audit.event.RuleFlowGroupLogEvent>
+    <org.drools.core.audit.event.RuleFlowGroupLogEvent>
+      <type>13</type>
+      <groupName>group1</groupName>
+      <size>1</size>
+    </org.drools.core.audit.event.RuleFlowGroupLogEvent>
+    <org.drools.core.audit.event.RuleFlowGroupLogEvent>
+      <type>12</type>
+      <groupName>group2</groupName>
+      <size>1</size>
+    </org.drools.core.audit.event.RuleFlowGroupLogEvent>
+    <org.drools.core.audit.event.RuleFlowGroupLogEvent>
+      <type>13</type>
+      <groupName>group2</groupName>
+      <size>1</size>
+    </org.drools.core.audit.event.RuleFlowGroupLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>いいい [1]</activationId>
+      <rule>いいい</rule>
+      <declarations></declarations>
+      <ruleFlowGroup>group2</ruleFlowGroup>
+      <factHandleIds>1</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>いいい [1]</activationId>
+      <rule>いいい</rule>
+      <declarations></declarations>
+      <ruleFlowGroup>group2</ruleFlowGroup>
+      <factHandleIds>1</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>いいい [1]</activationId>
+      <rule>いいい</rule>
+      <declarations></declarations>
+      <ruleFlowGroup>group2</ruleFlowGroup>
+      <factHandleIds>1</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>あああ [1]</activationId>
+      <rule>あああ</rule>
+      <declarations></declarations>
+      <ruleFlowGroup>group1</ruleFlowGroup>
+      <factHandleIds>1</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>あああ [1]</activationId>
+      <rule>あああ</rule>
+      <declarations></declarations>
+      <ruleFlowGroup>group1</ruleFlowGroup>
+      <factHandleIds>1</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>あああ [1]</activationId>
+      <rule>あああ</rule>
+      <declarations></declarations>
+      <ruleFlowGroup>group1</ruleFlowGroup>
+      <factHandleIds>1</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+  </events>
+  <engine>PHREAK</engine>
+</org.drools.core.audit.WorkingMemoryLog>
+</object-stream>

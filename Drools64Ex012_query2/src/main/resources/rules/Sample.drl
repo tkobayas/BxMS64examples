@@ -1,0 +1,14 @@
+package com.sample
+ 
+import com.sample.Person;
+
+query testquery(int $a, Person $p)
+	$p := Person(age > $a)
+end
+
+rule "hoge"
+	when
+		testquery(30, $p;)  // ";" is important! "positional arguments"
+	then
+		System.out.println($p.getName());
+end

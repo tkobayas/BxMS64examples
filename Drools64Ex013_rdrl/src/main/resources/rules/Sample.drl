@@ -1,0 +1,9 @@
+package org.kie.example.project1;
+
+rule "rule1"
+dialect "mvel"
+when
+    org.kie.example.project1.person(age != 1 &&  < 10 && > 5)
+then
+	System.out.println("rule1");
+end
