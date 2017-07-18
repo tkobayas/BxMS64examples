@@ -11,7 +11,7 @@ import junit.framework.TestCase;
 
 public class StartProcessTest extends TestCase {
     
-    public static final String COMTAINER_ID = "MyContainer";
+    public static final String COMTAINER_ID = "org.kie.example:project1:1.0.0-SNAPSHOT";
 
 	public void testRest() throws Exception {
 
