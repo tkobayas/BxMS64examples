@@ -13,14 +13,19 @@
     <drools.version>6.5.0.Final-redhat-2</drools.version>
   </properties>
 
-
   <dependencies>
-
     <dependency>
       <groupId>com.sample</groupId>
       <artifactId>Drools64Ex015_pojo_with_dep</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+
+<!--     <dependency> -->
+<!--       <groupId>commons-lang</groupId> -->
+<!--       <artifactId>commons-lang</artifactId> -->
+<!--       <version>2.6</version> -->
+<!--       <scope>provided</scope> -->
+<!--     </dependency> -->
   </dependencies>
 
   <pluginRepositories>
