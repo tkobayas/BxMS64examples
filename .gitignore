@@ -7,3 +7,5 @@ target/
 tmp.log
 .tern-project
 .metadata
+.recommenders/
+

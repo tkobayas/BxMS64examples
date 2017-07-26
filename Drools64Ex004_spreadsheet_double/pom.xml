@@ -13,7 +13,7 @@
   <description>A sample Drools Maven project</description>
 
   <properties>
-    <runtime.version>6.5.0.Final</runtime.version>
+    <drools.version>6.5.0.Final-redhat-2</drools.version>
   </properties>
 
   <repositories>
@@ -36,23 +36,23 @@
     <dependency>
       <groupId>org.kie</groupId>
       <artifactId>kie-api</artifactId>
-      <version>${runtime.version}</version>
+      <version>${drools.version}</version>
     </dependency>
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-core</artifactId>
-      <version>${runtime.version}</version>
+      <version>${drools.version}</version>
     </dependency>
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-decisiontables</artifactId>
-      <version>${runtime.version}</version>
+      <version>${drools.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-test</artifactId>
-      <version>${runtime.version}</version>
+      <version>${drools.version}</version>
     </dependency>
   </dependencies>
 </project>
