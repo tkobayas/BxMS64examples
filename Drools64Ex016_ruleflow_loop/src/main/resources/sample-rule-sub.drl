@@ -1,0 +1,19 @@
+package com.sample
+ 
+import com.sample.Message;
+ 
+rule "Hello Sub Group1"
+	ruleflow-group "sub-group1"
+    when
+        m : Message()
+    then
+        System.out.println( "Hello Sub Group1 : " + m.getMessage() );
+end
+
+rule "Hello Sub Group2"
+	ruleflow-group "sub-group2"
+    when
+        m : Message()
+    then
+        System.out.println( "Hello Sub Group2 : " + m.getMessage() );
+end

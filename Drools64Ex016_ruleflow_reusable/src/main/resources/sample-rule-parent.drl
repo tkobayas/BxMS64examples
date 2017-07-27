@@ -1,0 +1,19 @@
+package com.sample
+ 
+import com.sample.Message;
+ 
+rule "Hello Parent Group1"
+	ruleflow-group "parent-group1"
+    when
+        m : Message()
+    then
+        System.out.println( "Hello Parent Group1 : " + m.getMessage() );
+end
+
+rule "Hello Parent Group2"
+	ruleflow-group "parent-group2"
+    when
+        m : Message()
+    then
+        System.out.println( "Hello Parent Group2 : " + m.getMessage() );
+end
