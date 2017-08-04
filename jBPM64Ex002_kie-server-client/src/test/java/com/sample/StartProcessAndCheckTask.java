@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.kie.server.api.model.definition.ProcessDefinition;
 import org.kie.server.api.model.instance.TaskEventInstance;
+import org.kie.server.api.model.instance.TaskInstance;
 import org.kie.server.api.model.instance.TaskSummary;
 import org.kie.server.client.ProcessServicesClient;
 import org.kie.server.client.QueryServicesClient;
@@ -27,17 +28,20 @@ public class StartProcessAndCheckTask extends TestCase {
 
         //        QueryServicesClient queryClient = KieServerUtils.getQueryServicesClient("bpmsAdmin", "password1!");
 
-        //        UserTaskServicesClient taskClient = KieServerUtils.getUserTaskServiceClient("bpmsAdmin", "password1!");
-        //        
-        //        List<TaskSummary> findTasks = taskClient.findTasks("bpmsAdmin", 0, 1);
-        //        Long taskId = findTasks.get(0).getId();
-        //
+                UserTaskServicesClient taskClient = KieServerUtils.getUserTaskServiceClient("bpmsAdmin", "password1!");
+                
+                List<TaskSummary> findTasks = taskClient.findTasks("bpmsAdmin", 0, 1);
+                Long taskId = findTasks.get(0).getId();
+                
+                TaskInstance taskInstance = taskClient.getTaskInstance(CONTAINER_ID, taskId);
+                System.out.println("taskInstance.getWorkItemId() = " + taskInstance.getWorkItemId());
+        
         //        List<TaskEventInstance> findTaskEvents = taskClient.findTaskEvents(taskId, 0, 1);
         //        System.out.println(findTaskEvents);
 
-        ProcessServicesClient processServiceClient = KieServerUtils.getProcessServicesClient();
-        
-        ProcessDefinition processDefinition = processServiceClient.getProcessDefinition(CONTAINER_ID, "project1.helloTimer");
-        System.out.println(processDefinition);
+//        ProcessServicesClient processServiceClient = KieServerUtils.getProcessServicesClient();
+//        
+//        ProcessDefinition processDefinition = processServiceClient.getProcessDefinition(CONTAINER_ID, "project1.helloTimer");
+//        System.out.println(processDefinition);
     }
 }
