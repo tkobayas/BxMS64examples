@@ -1,6 +1,8 @@
 package com.sample;
 
 import java.net.URL;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,13 +42,23 @@ public class ProcessStartTest extends TestCase {
             
             List<Long> tasks = taskService.getTasksByProcessInstanceId(processInstanceId);
             Task task = taskService.getTaskById(tasks.get(0));
-            System.out.println("CreatedOn = " + task.getTaskData().getCreatedOn());
+            Date createdOn = task.getTaskData().getCreatedOn();
+            System.out.println("task.getTaskData().getCreatedOn() = " + createdOn);
             
             List<? extends VariableInstanceLog> findVariableInstances = auditService.findVariableInstances(processInstanceId, "expireDelay");
             VariableInstanceLog variableInstanceLog = findVariableInstances.get(findVariableInstances.size() - 1);
+            String expireDelay = variableInstanceLog.getValue();
             
-            System.out.println(variableInstanceLog.getValue());
+            System.out.println("Process Variable \"expireDelay\" = " + expireDelay);
             
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(createdOn);
+            calendar.add(Calendar.SECOND, Integer.parseInt(expireDelay));
+            Date expireTime = calendar.getTime();
+            System.out.println("expireTime = " + expireTime);
+
+            long timeRemaining = (calendar.getTimeInMillis() - System.currentTimeMillis());
+            System.out.println("Time remaining till Boundary Timer fire = " + timeRemaining + "ms");
         }
     }
 }
