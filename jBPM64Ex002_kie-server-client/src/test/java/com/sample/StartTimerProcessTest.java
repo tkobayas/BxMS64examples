@@ -11,14 +11,14 @@ import junit.framework.TestCase;
 
 public class StartTimerProcessTest extends TestCase {
     
-    public static final String COMTAINER_ID = "org.kie.example:project1:1.0.0-SNAPSHOT";
+    public static final String CONTAINER_ID = "org.kie.example:project1:1.0.0-SNAPSHOT";
 
     
 	public void testRest() throws Exception {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		ProcessServicesClient processClient = KieServerUtils.getProcessServiceClient();
-		long processInstanceId = processClient.startProcess(COMTAINER_ID, "project1.helloTimer", params);
+		long processInstanceId = processClient.startProcess(CONTAINER_ID, "project1.helloTimer", params);
 
 		System.out.println("startProcess() : processInstanceId = " + processInstanceId);
 

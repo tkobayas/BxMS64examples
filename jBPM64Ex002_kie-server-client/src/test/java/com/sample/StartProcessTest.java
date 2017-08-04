@@ -11,13 +11,13 @@ import junit.framework.TestCase;
 
 public class StartProcessTest extends TestCase {
     
-    public static final String COMTAINER_ID = "org.kie.example:project1:1.0.0-SNAPSHOT";
+    public static final String CONTAINER_ID = "org.kie.example:project1:1.0.0-SNAPSHOT";
 
 	public void testRest() throws Exception {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		ProcessServicesClient processClient = KieServerUtils.getProcessServiceClient();
-		long processInstanceId = processClient.startProcess(COMTAINER_ID, "project1.helloProcess", params);
+		long processInstanceId = processClient.startProcess(CONTAINER_ID, "project1.helloProcess", params);
 
 		System.out.println("startProcess() : processInstanceId = " + processInstanceId);
 
@@ -28,8 +28,8 @@ public class StartProcessTest extends TestCase {
 		for (org.kie.server.api.model.instance.TaskSummary taskSummary : taskList) {
 			System.out.println("taskSummary.getId() = " + taskSummary.getId());
 			long taskId = taskSummary.getId();
-			taskClient.startTask(COMTAINER_ID, taskId, "bpmsAdmin");
-			taskClient.completeTask(COMTAINER_ID, taskId, "bpmsAdmin", null);
+			taskClient.startTask(CONTAINER_ID, taskId, "bpmsAdmin");
+			taskClient.completeTask(CONTAINER_ID, taskId, "bpmsAdmin", null);
 		}
 
 	}
