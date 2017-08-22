@@ -1,5 +1,4 @@
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,20 +19,25 @@ import org.kie.server.client.QueryServicesClient;
 import org.kie.server.client.RuleServicesClient;
 import org.kie.server.client.UserTaskServicesClient;
 
-public class CreateContainerTest {
+public class RestartContainerTest {
 
-	public static void main(String[] args) {
-		KieServicesConfiguration config = KieServicesFactory
-				.newRestConfiguration(
-						"http://localhost:8080/kie-server/services/rest/server",
-						"kieserver", "kieserver1!");
-		KieServicesClient client = KieServicesFactory
-				.newKieServicesClient(config);
-		
+    private static final String CONTAINER_ID = "org.kie.example:project1:1.0.0-SNAPSHOT";
+
+    public static void main(String[] args) throws Exception {
+        KieServicesConfiguration config = KieServicesFactory.newRestConfiguration("http://localhost:8080/kie-server/services/rest/server", "kieserver", "kieserver1!");
+        KieServicesClient client = KieServicesFactory.newKieServicesClient(config);
+
+        ServiceResponse<Void> response1 = client.disposeContainer(CONTAINER_ID);
+
+        System.out.println(response1);
+        
+        Thread.sleep(3000);
+
         ReleaseId releaseId = new ReleaseId("org.kie.example", "project1", "1.0.0-SNAPSHOT");
-        KieContainerResource resource = new KieContainerResource("org.kie.example:project1:1.0.0-SNAPSHOT", releaseId);
-		ServiceResponse<KieContainerResource> response = client.createContainer("org.kie.example:project1:1.0.0-SNAPSHOT", resource);
+        KieContainerResource resource = new KieContainerResource(CONTAINER_ID, releaseId);
 
-		System.out.println(response);
-	}
+        ServiceResponse<KieContainerResource> response2 = client.createContainer("org.kie.example:project1:1.0.0-SNAPSHOT", resource);
+
+        System.out.println(response2);
+    }
 }

@@ -1,5 +1,9 @@
 package com.sample;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.kie.server.api.KieServerConstants;
 import org.kie.server.client.KieServicesClient;
 import org.kie.server.client.KieServicesConfiguration;
 import org.kie.server.client.KieServicesFactory;
@@ -21,6 +25,9 @@ public class KieServerUtils {
     public static ProcessServicesClient getProcessServiceClient(String username, String password) {
 
         KieServicesConfiguration config = KieServicesFactory.newRestConfiguration(BASE_URL, username, password);
+        List<String> capabilities = new ArrayList<String>();
+        capabilities.add(KieServerConstants.CAPABILITY_BPM);
+        config.setCapabilities(capabilities);
         KieServicesClient client = KieServicesFactory.newKieServicesClient(config);
 
         ProcessServicesClient proessServicesClient = client.getServicesClient(ProcessServicesClient.class);
@@ -35,6 +42,9 @@ public class KieServerUtils {
     public static UserTaskServicesClient getUserTaskServiceClient(String username, String password) {
 
         KieServicesConfiguration config = KieServicesFactory.newRestConfiguration(BASE_URL, username, password);
+        List<String> capabilities = new ArrayList<String>();
+        capabilities.add(KieServerConstants.CAPABILITY_BPM);
+        config.setCapabilities(capabilities);
         KieServicesClient client = KieServicesFactory.newKieServicesClient(config);
 
         UserTaskServicesClient userTaskServiceClient = client.getServicesClient(UserTaskServicesClient.class);
@@ -49,6 +59,9 @@ public class KieServerUtils {
     public static QueryServicesClient getQueryServicesClient(String username, String password) {
 
         KieServicesConfiguration config = KieServicesFactory.newRestConfiguration(BASE_URL, username, password);
+        List<String> capabilities = new ArrayList<String>();
+        capabilities.add(KieServerConstants.CAPABILITY_BPM);
+        config.setCapabilities(capabilities);
         KieServicesClient client = KieServicesFactory.newKieServicesClient(config);
 
         QueryServicesClient queryServiceClient = client.getServicesClient(QueryServicesClient.class);
@@ -63,6 +76,9 @@ public class KieServerUtils {
     public static ProcessServicesClient getProcessServicesClient(String username, String password) {
 
         KieServicesConfiguration config = KieServicesFactory.newRestConfiguration(BASE_URL, username, password);
+        List<String> capabilities = new ArrayList<String>();
+        capabilities.add(KieServerConstants.CAPABILITY_BPM);
+        config.setCapabilities(capabilities);
         KieServicesClient client = KieServicesFactory.newKieServicesClient(config);
 
         ProcessServicesClient processServiceClient = client.getServicesClient(ProcessServicesClient.class);

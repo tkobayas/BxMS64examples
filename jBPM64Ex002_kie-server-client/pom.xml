@@ -11,24 +11,35 @@
   <name>jBPM62Example_kie-sever-rest_basic</name>
   <description>A sample jBPM Maven project</description>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.jboss.bom.brms</groupId>
-				<artifactId>jboss-javaee-6.0-with-brms-bpmsuite</artifactId>
-				<type>pom</type>
-				<version>6.4.0.GA-redhat-2</version>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.jboss.bom.brms</groupId>
+        <artifactId>jboss-javaee-6.0-with-brms-bpmsuite</artifactId>
+        <type>pom</type>
+        <version>6.4.0.GA-redhat-2</version>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
       <groupId>org.kie.server</groupId>
       <artifactId>kie-server-client</artifactId>
-      <exclusions><exclusion><groupId>org.javassist</groupId><artifactId>javassist</artifactId></exclusion></exclusions>
+      <exclusions>
+        <exclusion>
+          <groupId>org.javassist</groupId>
+          <artifactId>javassist</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.0.9</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
