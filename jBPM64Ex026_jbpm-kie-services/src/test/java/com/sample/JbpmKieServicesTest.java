@@ -53,6 +53,7 @@ import org.kie.api.task.TaskService;
 import org.kie.api.task.model.TaskSummary;
 import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.query.QueryFilter;
+import org.kie.internal.runtime.conf.RuntimeStrategy;
 import org.kie.scanner.MavenRepository;
 import org.slf4j.LoggerFactory;
 
@@ -172,6 +173,7 @@ public class JbpmKieServicesTest {
         assertNotNull(deploymentService);
 
         deploymentUnit = new KModuleDeploymentUnit(GROUP_ID, ARTIFACT_ID, VERSION);
+        deploymentUnit.setStrategy(RuntimeStrategy.PER_PROCESS_INSTANCE);
 
         deploymentService.deploy(deploymentUnit);
         assertNotNull(processService);
