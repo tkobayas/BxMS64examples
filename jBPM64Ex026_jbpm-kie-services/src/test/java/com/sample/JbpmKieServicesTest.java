@@ -25,6 +25,7 @@ import org.jbpm.kie.services.impl.UserTaskServiceImpl;
 import org.jbpm.kie.services.impl.bpmn2.BPMN2DataServiceImpl;
 import org.jbpm.kie.services.impl.query.QueryServiceImpl;
 import org.jbpm.runtime.manager.impl.RuntimeManagerFactoryImpl;
+import org.jbpm.runtime.manager.impl.jpa.EntityManagerFactoryManager;
 import org.jbpm.services.api.DefinitionService;
 import org.jbpm.services.api.DeploymentService;
 import org.jbpm.services.api.ProcessService;
@@ -107,6 +108,7 @@ public class JbpmKieServicesTest {
             configOverrides.put("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect"); // Change for other DB
         }
         emf = Persistence.createEntityManagerFactory("org.jbpm.domain", configOverrides);
+        EntityManagerFactoryManager.get().addEntityManagerFactory("org.jbpm.domain", emf);
 
         //        emf = EntityManagerFactoryManager.get().getOrCreate("org.jbpm.domain");
         identityProvider = new TestIdentityProvider();
