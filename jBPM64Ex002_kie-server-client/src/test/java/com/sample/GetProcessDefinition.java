@@ -20,7 +20,7 @@ public class GetProcessDefinition extends TestCase {
 
     public void testRest() throws Exception {
 
-        ProcessServicesClient processServiceClient = KieServerUtils.getProcessServicesClient();
+        ProcessServicesClient processServiceClient = KieServerRestUtils.getProcessServicesClient();
         
         ProcessDefinition processDefinition = processServiceClient.getProcessDefinition(CONTAINER_ID, "project1.helloTimer");
         System.out.println(new XStream().toXML(processDefinition));

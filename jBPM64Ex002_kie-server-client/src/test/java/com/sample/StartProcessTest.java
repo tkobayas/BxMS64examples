@@ -16,12 +16,12 @@ public class StartProcessTest extends TestCase {
     public void testRest() throws Exception {
 
         Map<String, Object> params = new HashMap<String, Object>();
-        ProcessServicesClient processClient = KieServerUtils.getProcessServiceClient();
+        ProcessServicesClient processClient = KieServerRestUtils.getProcessServicesClient();
         long processInstanceId = processClient.startProcess(CONTAINER_ID, "project1.helloProcess", params);
 
         System.out.println("startProcess() : processInstanceId = " + processInstanceId);
 
-        UserTaskServicesClient taskClient = KieServerUtils.getUserTaskServiceClient("bpmsAdmin", "password1!");
+        UserTaskServicesClient taskClient = KieServerRestUtils.getUserTaskServicesClient("bpmsAdmin", "password1!");
 
         List<org.kie.server.api.model.instance.TaskSummary> taskList;
         taskList = taskClient.findTasksAssignedAsPotentialOwner("bpmsAdmin", 0, 100);

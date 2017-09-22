@@ -9,20 +9,17 @@ import org.kie.server.client.KieServicesConfiguration;
 import org.kie.server.client.KieServicesFactory;
 import org.kie.server.client.ProcessServicesClient;
 import org.kie.server.client.QueryServicesClient;
+import org.kie.server.client.RuleServicesClient;
 import org.kie.server.client.UserTaskServicesClient;
 
-public class KieServerUtils {
+public class KieServerRestUtils {
 
     private static final String BASE_URL = "http://localhost:8080/kie-server/services/rest/server";
     private static final String DEFAULT_USERNAME = "kieserver";
     private static final String DEFAULT_PASSWORD = "kieserver1!";
 
 
-    public static ProcessServicesClient getProcessServiceClient() {
-        return getProcessServiceClient(DEFAULT_USERNAME, DEFAULT_PASSWORD);
-    }
-
-    public static ProcessServicesClient getProcessServiceClient(String username, String password) {
+    public static KieServicesClient getKieServicesClient(String username, String password) {
 
         KieServicesConfiguration config = KieServicesFactory.newRestConfiguration(BASE_URL, username, password);
         List<String> capabilities = new ArrayList<String>();
@@ -30,16 +27,14 @@ public class KieServerUtils {
         config.setCapabilities(capabilities);
         KieServicesClient client = KieServicesFactory.newKieServicesClient(config);
 
-        ProcessServicesClient proessServicesClient = client.getServicesClient(ProcessServicesClient.class);
-
-        return proessServicesClient;
+        return client;
     }
 
-    public static UserTaskServicesClient getUserTaskServiceClient() {
-        return getUserTaskServiceClient(DEFAULT_USERNAME, DEFAULT_PASSWORD);
+    public static UserTaskServicesClient getUserTaskServicesClient() {
+        return getUserTaskServicesClient(DEFAULT_USERNAME, DEFAULT_PASSWORD);
     }
 
-    public static UserTaskServicesClient getUserTaskServiceClient(String username, String password) {
+    public static UserTaskServicesClient getUserTaskServicesClient(String username, String password) {
 
         KieServicesConfiguration config = KieServicesFactory.newRestConfiguration(BASE_URL, username, password);
         List<String> capabilities = new ArrayList<String>();
@@ -84,5 +79,24 @@ public class KieServerUtils {
         ProcessServicesClient processServiceClient = client.getServicesClient(ProcessServicesClient.class);
 
         return processServiceClient;
+    }
+    
+    public static RuleServicesClient getRuleServicesClient() {
+        return getRuleServicesClient(DEFAULT_USERNAME, DEFAULT_PASSWORD);
+    }
+
+    public static RuleServicesClient getRuleServicesClient(String username, String password) {
+
+        KieServicesConfiguration config = KieServicesFactory.newRestConfiguration(BASE_URL, username, password);
+        List<String> capabilities = new ArrayList<String>();
+        capabilities.add(KieServerConstants.CAPABILITY_BRM);
+        capabilities.add(KieServerConstants.CAPABILITY_BPM);
+        config.setCapabilities(capabilities);
+        config.setTimeout(60000);
+        KieServicesClient client = KieServicesFactory.newKieServicesClient(config);
+
+        RuleServicesClient ruleServiceClient = client.getServicesClient(RuleServicesClient.class);
+
+        return ruleServiceClient;
     }
 }

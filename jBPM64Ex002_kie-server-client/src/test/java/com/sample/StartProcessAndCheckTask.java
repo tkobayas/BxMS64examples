@@ -21,14 +21,14 @@ public class StartProcessAndCheckTask extends TestCase {
     public void testRest() throws Exception {
 
         Map<String, Object> params = new HashMap<String, Object>();
-        ProcessServicesClient processClient = KieServerUtils.getProcessServiceClient();
+        ProcessServicesClient processClient = KieServerRestUtils.getProcessServicesClient();
         long processInstanceId = processClient.startProcess(CONTAINER_ID, "project1.helloTimer", params);
 
         System.out.println("startProcess() : processInstanceId = " + processInstanceId);
 
         //        QueryServicesClient queryClient = KieServerUtils.getQueryServicesClient("bpmsAdmin", "password1!");
 
-                UserTaskServicesClient taskClient = KieServerUtils.getUserTaskServiceClient("bpmsAdmin", "password1!");
+                UserTaskServicesClient taskClient = KieServerRestUtils.getUserTaskServicesClient("bpmsAdmin", "password1!");
                 
                 List<TaskSummary> findTasks = taskClient.findTasks("bpmsAdmin", 0, 1);
                 Long taskId = findTasks.get(0).getId();

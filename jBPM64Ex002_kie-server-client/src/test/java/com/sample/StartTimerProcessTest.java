@@ -17,7 +17,7 @@ public class StartTimerProcessTest extends TestCase {
 	public void testRest() throws Exception {
 
 		Map<String, Object> params = new HashMap<String, Object>();
-		ProcessServicesClient processClient = KieServerUtils.getProcessServiceClient();
+		ProcessServicesClient processClient = KieServerRestUtils.getProcessServicesClient();
 		long processInstanceId = processClient.startProcess(CONTAINER_ID, "project1.helloTimer", params);
 
 		System.out.println("startProcess() : processInstanceId = " + processInstanceId);
