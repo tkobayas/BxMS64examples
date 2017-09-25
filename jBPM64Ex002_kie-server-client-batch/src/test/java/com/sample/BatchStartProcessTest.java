@@ -22,6 +22,10 @@ public class BatchStartProcessTest extends TestCase {
 
     public void testRest() throws Exception {
 
+        // This example is not recommended because:
+        // - jBPM kie-server extension doesn't support batch command
+        // - RuleServicesClient is not aware of RuntimeManager (for example, it will fail with PerProcessInstance)
+        
         Map<String, Object> params = new HashMap<String, Object>();
         RuleServicesClient ruleServicesClient = KieServerRestUtils.getRuleServicesClient("bpmsAdmin", "password1!");
 
