@@ -1,10 +1,18 @@
 package com.sample
  
 import com.sample.Person;
- 
+
+rule "Dummy"
+    when
+    then
+        System.out.println( "Dummy");
+end
+
+
 rule "Hello"
     when
         $p : Person( age > 10 )
     then
+        $p.setName("PPPPPPP");
         System.out.println( "Hello, " + $p.getName());
 end

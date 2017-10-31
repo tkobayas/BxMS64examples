@@ -23,7 +23,7 @@ public class KieServerClientTest extends TestCase {
     private static final String USERNAME = "kieserver";
     private static final String PASSWORD = "kieserver1!";
 
-    private static final String CONTAINER_ID = "org.kie.example:project1:1.0.0-SNAPSHOT";
+    private static final String CONTAINER_ID = "org.kie.example:project3:1.0.0-SNAPSHOT";
 
     //    private static final MarshallingFormat FORMAT = MarshallingFormat.JSON;
     //    private static final MarshallingFormat FORMAT = MarshallingFormat.JAXB;
@@ -56,6 +56,10 @@ public class KieServerClientTest extends TestCase {
         System.out.println("-----------------------------------");
 
         System.out.println(response);
+        
+        ExecutionResults result = response.getResult();
+        
+        System.out.println(result);
     }
 
 }

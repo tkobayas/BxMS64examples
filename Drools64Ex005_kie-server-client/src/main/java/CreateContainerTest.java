@@ -30,9 +30,9 @@ public class CreateContainerTest {
 		KieServicesClient client = KieServicesFactory
 				.newKieServicesClient(config);
 		
-        ReleaseId releaseId = new ReleaseId("org.kie.example", "project1", "1.0.0-SNAPSHOT");
-        KieContainerResource resource = new KieContainerResource("org.kie.example:project1:1.0.0-SNAPSHOT", releaseId);
-		ServiceResponse<KieContainerResource> response = client.createContainer("org.kie.example:project1:1.0.0-SNAPSHOT", resource);
+        ReleaseId releaseId = new ReleaseId("org.kie.example", "project3", "1.0.0-SNAPSHOT");
+        KieContainerResource resource = new KieContainerResource("org.kie.example:project3:1.0.0-SNAPSHOT", releaseId);
+		ServiceResponse<KieContainerResource> response = client.createContainer("org.kie.example:project3:1.0.0-SNAPSHOT", resource);
 
 		System.out.println(response);
 	}

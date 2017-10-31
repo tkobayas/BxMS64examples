@@ -21,7 +21,7 @@ import org.kie.server.client.UserTaskServicesClient;
 
 public class RestartContainerTest {
 
-    private static final String CONTAINER_ID = "org.kie.example:project1:1.0.0-SNAPSHOT";
+    private static final String CONTAINER_ID = "org.kie.example:project3:1.0.0-SNAPSHOT";
 
     public static void main(String[] args) throws Exception {
         KieServicesConfiguration config = KieServicesFactory.newRestConfiguration("http://localhost:8080/kie-server/services/rest/server", "kieserver", "kieserver1!");
@@ -33,10 +33,10 @@ public class RestartContainerTest {
         
         Thread.sleep(3000);
 
-        ReleaseId releaseId = new ReleaseId("org.kie.example", "project1", "1.0.0-SNAPSHOT");
+        ReleaseId releaseId = new ReleaseId("org.kie.example", "project3", "1.0.0-SNAPSHOT");
         KieContainerResource resource = new KieContainerResource(CONTAINER_ID, releaseId);
 
-        ServiceResponse<KieContainerResource> response2 = client.createContainer("org.kie.example:project1:1.0.0-SNAPSHOT", resource);
+        ServiceResponse<KieContainerResource> response2 = client.createContainer("org.kie.example:project3:1.0.0-SNAPSHOT", resource);
 
         System.out.println(response2);
     }
