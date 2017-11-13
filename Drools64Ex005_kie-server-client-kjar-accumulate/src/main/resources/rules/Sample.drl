@@ -1,0 +1,20 @@
+package com.sample
+ 
+import com.sample.Person;
+
+import accumulate com.sample.MyAverageAccumulator myaverage
+
+
+rule "init"
+    when
+    then
+        System.out.println("init");
+end
+
+
+rule "Hello average"
+    when
+    $num : Number() from accumulate( Person($age : age), myaverage($age) )
+    then
+        System.out.println( "Hello, $num = " + $num);
+end
