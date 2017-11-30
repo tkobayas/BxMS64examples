@@ -21,7 +21,6 @@ import org.kie.server.client.UserTaskServicesClient;
 
 public class KieServerJmsUtils {
 
-    private static final String BASE_URL = "http://localhost:8080/kie-server/services/rest/server";
     private static final String DEFAULT_USERNAME = "kieserver";
     private static final String DEFAULT_PASSWORD = "kieserver1!";
 

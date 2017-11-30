@@ -1,5 +1,7 @@
 package com.sample;
 
+import static com.sample.Constants.BASE_URL;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +16,6 @@ import org.kie.server.client.UserTaskServicesClient;
 
 public class KieServerRestUtils {
 
-    private static final String BASE_URL = "http://localhost:8080/kie-server/services/rest/server";
     private static final String DEFAULT_USERNAME = "kieserver";
     private static final String DEFAULT_PASSWORD = "kieserver1!";
 
