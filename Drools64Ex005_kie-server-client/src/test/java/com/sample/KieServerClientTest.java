@@ -1,5 +1,8 @@
 package com.sample;
 
+import static com.sample.Constants.BASE_URL;
+import static com.sample.Constants.CONTAINER_ID;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -19,11 +22,8 @@ import org.kie.server.client.RuleServicesClient;
 
 public class KieServerClientTest extends TestCase {
 
-    private static final String BASE_URL = "http://localhost:8080/kie-server/services/rest/server";
     private static final String USERNAME = "kieserver";
     private static final String PASSWORD = "kieserver1!";
-
-    private static final String CONTAINER_ID = "org.kie.example:project3:1.0.0-SNAPSHOT";
 
     //    private static final MarshallingFormat FORMAT = MarshallingFormat.JSON;
     //    private static final MarshallingFormat FORMAT = MarshallingFormat.JAXB;
@@ -56,9 +56,9 @@ public class KieServerClientTest extends TestCase {
         System.out.println("-----------------------------------");
 
         System.out.println(response);
-        
+
         ExecutionResults result = response.getResult();
-        
+
         System.out.println(result);
     }
 
