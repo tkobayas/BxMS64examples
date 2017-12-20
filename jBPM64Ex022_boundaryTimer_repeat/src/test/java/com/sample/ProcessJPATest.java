@@ -10,12 +10,14 @@ import javax.persistence.Persistence;
 
 import org.h2.tools.Server;
 import org.jbpm.process.audit.JPAAuditLogService;
+import org.jbpm.runtime.manager.impl.DefaultRegisterableItemsFactory;
 import org.jbpm.runtime.manager.impl.RuntimeEnvironmentBuilder;
 import org.jbpm.services.task.identity.JBossUserGroupCallbackImpl;
 import org.jbpm.test.JBPMHelper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.kie.api.event.process.ProcessEventListener;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.manager.RuntimeEngine;
@@ -84,26 +86,29 @@ public class ProcessJPATest {
         try {
 
             RuntimeManager manager = getRuntimeManager("org.jbpm.helloTimer.v1.0.bpmn2");
-            RuntimeEngine runtime = manager.getRuntimeEngine(ProcessInstanceIdContext.get());
-            KieSession ksession = runtime.getKieSession();
 
-            // JPAAuditLogService logService = new JPAAuditLogService(ksession.getEnvironment());
+            {
+                RuntimeEngine runtime = manager.getRuntimeEngine(ProcessInstanceIdContext.get());
+                KieSession ksession = runtime.getKieSession();
 
-            BitronixTransactionManager transactionManager = TransactionManagerServices.getTransactionManager();
-            transactionManager.setTransactionTimeout(3600); // longer timeout for a debugger
+                // JPAAuditLogService logService = new JPAAuditLogService(ksession.getEnvironment());
 
-            // start a new process instance
-            Map<String, Object> params = new HashMap<String, Object>();
-            ProcessInstance pi = ksession.startProcess("project1.helloTimer", params);
-            System.out.println("A process instance started : pid = " + pi.getId());
+                BitronixTransactionManager transactionManager = TransactionManagerServices.getTransactionManager();
+                transactionManager.setTransactionTimeout(3600); // longer timeout for a debugger
 
-            TaskService taskService = runtime.getTaskService();
+                // start a new process instance
+                Map<String, Object> params = new HashMap<String, Object>();
+                ProcessInstance pi = ksession.startProcess("project1.helloTimer", params);
+                System.out.println("A process instance started : pid = " + pi.getId());
+
+                manager.disposeRuntimeEngine(runtime);
+
+            }
 
             // -----------
-            manager.disposeRuntimeEngine(runtime);
-            
+
             Thread.sleep(15000);
-            
+
             manager.close();
 
         } catch (Throwable th) {
@@ -118,9 +123,15 @@ public class ProcessJPATest {
         properties.setProperty("john", "");
         UserGroupCallback userGroupCallback = new JBossUserGroupCallbackImpl(properties);
 
-        RuntimeEnvironment environment = RuntimeEnvironmentBuilder.getDefault().persistence(true)
-                .entityManagerFactory(emf).userGroupCallback(userGroupCallback)
-                .addAsset(ResourceFactory.newClassPathResource(process), ResourceType.BPMN2).get();
+        RuntimeEnvironment environment = RuntimeEnvironmentBuilder.getDefault().persistence(true).entityManagerFactory(emf).userGroupCallback(userGroupCallback).addAsset(ResourceFactory.newClassPathResource(process), ResourceType.BPMN2).registerableItemsFactory(new DefaultRegisterableItemsFactory() {
+
+            @Override
+            public List<ProcessEventListener> getProcessEventListeners(RuntimeEngine runtime) {
+                List<ProcessEventListener> listeners = super.getProcessEventListeners(runtime);
+                listeners.add(new MyProcessEventListener());
+                return listeners;
+            }
+        }).get();
         return RuntimeManagerFactory.Factory.get().newPerProcessInstanceRuntimeManager(environment);
 
     }
