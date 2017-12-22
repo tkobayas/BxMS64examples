@@ -21,8 +21,8 @@ import org.kie.server.client.UserTaskServicesClient;
 
 public class KieServerJmsUtils {
 
-    private static final String DEFAULT_USERNAME = "kieserver";
-    private static final String DEFAULT_PASSWORD = "kieserver1!";
+    private static final String DEFAULT_USERNAME = "bpmsAdmin";
+    private static final String DEFAULT_PASSWORD = "password1!";
 
     private static final String JMS_USERNAME = "bpmsAdmin";
     private static final String JMS_PASSWORD = "password1!";
