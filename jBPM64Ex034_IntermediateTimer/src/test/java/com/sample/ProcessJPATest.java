@@ -100,15 +100,12 @@ public class ProcessJPATest {
             ProcessInstance pi = ksession.startProcess("com.sample.bpmn.hello", params);
             logger.info("A process instance started : pid = " + pi.getId());
 
-
             // -----------
             manager.disposeRuntimeEngine(runtime);
             
             // Wait for 10 seconds to fire the timer
             
             Thread.sleep(20000);
-            
-            
 
         } catch (Throwable th) {
             th.printStackTrace();
