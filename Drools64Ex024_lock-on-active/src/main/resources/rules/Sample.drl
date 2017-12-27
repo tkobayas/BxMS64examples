@@ -3,7 +3,6 @@ package com.sample
 import com.sample.DroolsTest.Message;
  
 rule "Hello1"
-	no-loop
 	lock-on-active
     when
         m : Message( status == Message.HELLO )
@@ -14,7 +13,6 @@ rule "Hello1"
 end
 
 rule "Hello2"
-	no-loop
 	lock-on-active
     when
         m : Message( status == Message.HELLO )
@@ -25,7 +23,6 @@ rule "Hello2"
 end
 
 rule "Hello3"
-	no-loop
 	lock-on-active
     when
         m : Message( status == Message.HELLO )
