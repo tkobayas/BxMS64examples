@@ -1,0 +1,36 @@
+package com.sample
+ 
+import com.sample.DroolsTest.Message;
+ 
+rule "Hello1"
+	no-loop
+	lock-on-active
+    when
+        m : Message( status == Message.HELLO )
+    then
+        System.out.println( "message = " + m.getMessage());
+        m.setMessage(  kcontext.getRule().getName() + " is fired" );
+        update( m );
+end
+
+rule "Hello2"
+	no-loop
+	lock-on-active
+    when
+        m : Message( status == Message.HELLO )
+    then
+        System.out.println( "message = " + m.getMessage());
+        m.setMessage(  kcontext.getRule().getName() + " is fired" );
+        update( m );
+end
+
+rule "Hello3"
+	no-loop
+	lock-on-active
+    when
+        m : Message( status == Message.HELLO )
+    then
+        System.out.println( "message = " + m.getMessage());
+        m.setMessage(  kcontext.getRule().getName() + " is fired" );
+        update( m );
+end
