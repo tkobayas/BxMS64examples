@@ -44,7 +44,7 @@ public class ProcessJPATest {
 
     private static final boolean H2 = false;
 
-    private static final int MAX_THREAD = 10;
+    private static final int MAX_THREAD = 100;
 
     protected static final int LOOP = 10;
 
@@ -70,7 +70,7 @@ public class ProcessJPATest {
         if (H2) {
             configOverrides.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         } else {
-//            configOverrides.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect"); // Change for other DB
+            //            configOverrides.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect"); // Change for other DB
 
             configOverrides.put("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect"); // Change for other DB
         }
@@ -92,51 +92,48 @@ public class ProcessJPATest {
 
         try {
 
-            final RuntimeManager manager = getRuntimeManager("sample.bpmn");
+            // NOTE: This test doesn't reproduce deadlock yet.
+            //       Just as basis of a reproducer
 
+            final RuntimeManager manager = getRuntimeManager("sample.bpmn");
 
             // JPAAuditLogService logService = new JPAAuditLogService(ksession.getEnvironment());
             // logService.clear();
 
             BitronixTransactionManager transactionManager = TransactionManagerServices.getTransactionManager();
             transactionManager.setTransactionTimeout(3600); // longer timeout for a debugger
-            
+
             // warmup
-            RuntimeEngine runtime = manager.getRuntimeEngine( ProcessInstanceIdContext.get() );
+            RuntimeEngine runtime = manager.getRuntimeEngine(ProcessInstanceIdContext.get());
             KieSession ksession = runtime.getKieSession();
-            ProcessInstance pi = ksession.startProcess( "com.sample.bpmn.hello", null );
-            ksession.signalEvent( "MySignal", null, pi.getId() );
-            manager.disposeRuntimeEngine( runtime ); 
+            ProcessInstance pi = ksession.startProcess("com.sample.bpmn.hello", null);
+            ksession.signalEvent("MySignal", null, pi.getId());
+            manager.disposeRuntimeEngine(runtime);
 
             ExecutorService executor = Executors.newFixedThreadPool(MAX_THREAD);
 
-            for ( int n = 0; n < MAX_THREAD; n++ ) {
-                executor.execute( new Runnable() {
+            for (int n = 0; n < MAX_THREAD; n++) {
+                executor.execute(new Runnable() {
 
                     public void run() {
 
-                        for ( int i = 0; i < LOOP; i++ ) {
-                            RuntimeEngine runtime = manager.getRuntimeEngine( ProcessInstanceIdContext.get() );
+                        for (int i = 0; i < LOOP; i++) {
+                            RuntimeEngine runtime = manager.getRuntimeEngine(ProcessInstanceIdContext.get());
                             KieSession ksession = runtime.getKieSession();
                             Map<String, Object> params = new HashMap<String, Object>();
-                            ProcessInstance pi = ksession.startProcess( "com.sample.bpmn.hello", params );
-                            System.out.println( "[" + Thread.currentThread().getName() + "] A process instance started : pid = " + pi.getId() );
-                            
-                            ksession.signalEvent( "MySignal", null, pi.getId() );
-                            
-                            manager.disposeRuntimeEngine( runtime );
+                            ProcessInstance pi = ksession.startProcess("com.sample.bpmn.hello", params);
+                            System.out.println("[" + Thread.currentThread().getName() + "] A process instance started : pid = " + pi.getId());
+
+                            ksession.signalEvent("MySignal", null, pi.getId());
+
+                            manager.disposeRuntimeEngine(runtime);
                         }
                     }
-                } );
+                });
             }
 
             executor.shutdown();
             executor.awaitTermination(300, TimeUnit.SECONDS);
-            
-            // start a new process instance
-
-
-//            ksession.signalEvent( "MySignal", null, pi.getId() );
 
             // -----------
 
@@ -152,9 +149,7 @@ public class ProcessJPATest {
         properties.setProperty("john", "");
         UserGroupCallback userGroupCallback = new JBossUserGroupCallbackImpl(properties);
 
-        RuntimeEnvironment environment = RuntimeEnvironmentBuilder.getDefault().persistence(true)
-                .entityManagerFactory(emf).userGroupCallback(userGroupCallback)
-                .addAsset(ResourceFactory.newClassPathResource(process), ResourceType.BPMN2).get();
+        RuntimeEnvironment environment = RuntimeEnvironmentBuilder.getDefault().persistence(true).entityManagerFactory(emf).userGroupCallback(userGroupCallback).addAsset(ResourceFactory.newClassPathResource(process), ResourceType.BPMN2).get();
         return RuntimeManagerFactory.Factory.get().newPerRequestRuntimeManager(environment);
 
     }
