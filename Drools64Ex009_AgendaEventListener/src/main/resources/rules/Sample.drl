@@ -6,7 +6,7 @@ rule "Hello World"
     when
         m : Message( status == Message.HELLO, myMessage : message )
     then
-        System.err.println( myMessage + kcontext.getKnowledgeRuntime().toString());
+        System.out.println( myMessage + kcontext.getKnowledgeRuntime().toString());
         m.setMessage( "Goodbye cruel world" );
         m.setStatus( Message.GOODBYE );
         update( m );
@@ -16,5 +16,5 @@ rule "GoodBye"
     when
         Message( status == Message.GOODBYE, myMessage : message )
     then
-        System.err.println( myMessage );
+        System.out.println( myMessage );
 end

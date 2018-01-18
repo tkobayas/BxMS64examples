@@ -28,7 +28,7 @@ public class DroolsTest {
     	    KieContainer kContainer = ks.getKieClasspathContainer();
         	KieSession kSession = kContainer.newKieSession("ksession-rules");
         	
-        	kSession.addEventListener( new DebugAgendaEventListener());
+        	kSession.addEventListener( new DebugAgendaEventListener(System.out));
 
             // go !
             Message message = new Message();
