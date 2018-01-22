@@ -7,6 +7,7 @@ import org.kie.api.event.rule.AgendaGroupPoppedEvent;
 import org.kie.api.event.rule.AgendaGroupPushedEvent;
 import org.kie.api.event.rule.BeforeMatchFiredEvent;
 import org.kie.api.event.rule.DebugAgendaEventListener;
+import org.kie.api.event.rule.DebugRuleRuntimeEventListener;
 import org.kie.api.event.rule.MatchCancelledEvent;
 import org.kie.api.event.rule.MatchCreatedEvent;
 import org.kie.api.event.rule.RuleFlowGroupActivatedEvent;
@@ -29,6 +30,7 @@ public class DroolsTest {
         	KieSession kSession = kContainer.newKieSession("ksession-rules");
         	
         	kSession.addEventListener( new DebugAgendaEventListener(System.out));
+            kSession.addEventListener( new DebugRuleRuntimeEventListener(System.out));
 
             // go !
             Message message = new Message();
