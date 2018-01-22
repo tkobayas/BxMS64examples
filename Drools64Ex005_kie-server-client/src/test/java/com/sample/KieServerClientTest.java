@@ -24,6 +24,10 @@ public class KieServerClientTest extends TestCase {
 
     private static final String USERNAME = "kieserver";
     private static final String PASSWORD = "kieserver1!";
+    
+    private static final String KSESSION_NAME = "myStatelessKsession";
+    
+    private static final String GLOBAL_IDENTIFIER = "results";
 
     //    private static final MarshallingFormat FORMAT = MarshallingFormat.JSON;
     //    private static final MarshallingFormat FORMAT = MarshallingFormat.JAXB;
@@ -45,11 +49,13 @@ public class KieServerClientTest extends TestCase {
         KieCommands commandsFactory = KieServices.Factory.get().getCommands();
 
         Person john = new Person("John", 20);
-
+        
+        commands.add(commandsFactory.newSetGlobal(GLOBAL_IDENTIFIER, new ArrayList()));
         commands.add(commandsFactory.newInsert(john, "fact-1"));
         commands.add(commandsFactory.newFireAllRules("fire-result"));
+        commands.add(commandsFactory.newGetGlobal(GLOBAL_IDENTIFIER));
 
-        BatchExecutionCommand batchExecution = commandsFactory.newBatchExecution(commands);
+        BatchExecutionCommand batchExecution = commandsFactory.newBatchExecution(commands, KSESSION_NAME);
 
         ServiceResponse<ExecutionResults> response = ruleClient.executeCommandsWithResults(CONTAINER_ID, batchExecution);
 
@@ -57,9 +63,9 @@ public class KieServerClientTest extends TestCase {
 
         System.out.println(response);
 
-        ExecutionResults result = response.getResult();
+        List results = (List)response.getResult().getValue(GLOBAL_IDENTIFIER);
 
-        System.out.println(result);
+        System.out.println("results.get(0) = " + results.get(0));
     }
 
 }

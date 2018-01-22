@@ -2,6 +2,8 @@ package com.sample
  
 import com.sample.Person;
 
+global java.util.List results;
+
 rule "Dummy"
     when
     then
@@ -13,6 +15,6 @@ rule "Hello"
     when
         $p : Person( age > 10 )
     then
-        $p.setName("PPPPPPP");
         System.out.println( "Hello, " + $p.getName());
+        results.add("hit Hello rule");
 end
