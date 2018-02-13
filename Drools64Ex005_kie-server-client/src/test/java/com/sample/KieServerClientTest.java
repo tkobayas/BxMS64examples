@@ -52,6 +52,8 @@ public class KieServerClientTest extends TestCase {
         
         commands.add(commandsFactory.newSetGlobal(GLOBAL_IDENTIFIER, new ArrayList()));
         commands.add(commandsFactory.newInsert(john, "fact-1"));
+        //commands.add(commandsFactory.newInsert("XXX", "fact-2"));
+
         commands.add(commandsFactory.newFireAllRules("fire-result"));
         commands.add(commandsFactory.newGetGlobal(GLOBAL_IDENTIFIER));
 
