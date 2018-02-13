@@ -5,7 +5,7 @@ package com.sample;
 
 public class Constants {
     
-    public static final String BASE_URL = "http://ds64-myproject.apps.s.nekop.io/kie-server/services/rest/server";
+    public static final String BASE_URL = "http://kie-tk1-tkobayas-ds-project.apps.s.nekop.io/kie-server/services/rest/server";
     
     public static final String GROUP_ID = "org.openshift.quickstarts";
     public static final String ARTIFACT_ID = "decisionserver-hellorules";

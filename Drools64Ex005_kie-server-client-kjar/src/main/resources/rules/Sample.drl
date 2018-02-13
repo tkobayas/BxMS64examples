@@ -18,3 +18,10 @@ rule "Hello"
         System.out.println( "Hello, " + $p.getName());
         results.add("hit Hello rule");
 end
+
+rule "Hello String"
+    when
+        $s : String( )
+    then
+        System.out.println( "Hello, " + $s);
+end
