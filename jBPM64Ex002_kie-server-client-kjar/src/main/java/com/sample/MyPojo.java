@@ -1,5 +1,8 @@
 package com.sample;
 
+import org.kie.api.remote.Remotable;
+
+@Remotable
 public class MyPojo {
 
     private String name;

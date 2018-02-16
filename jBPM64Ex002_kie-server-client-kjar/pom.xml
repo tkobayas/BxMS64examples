@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.kie.example</groupId>
-  <artifactId>project1</artifactId>
+  <artifactId>project4</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <!-- <version>1.0.0</version> -->
 
@@ -17,6 +17,12 @@
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.kie</groupId>
+      <artifactId>kie-api</artifactId>
+      <version>${drools.version}</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
   <repositories>
