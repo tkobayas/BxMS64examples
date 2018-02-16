@@ -41,7 +41,7 @@ public class KieServerClientTest extends TestCase {
 
         System.out.println("startProcess() : processInstanceId = " + processInstanceId);
 
-        UserTaskServicesClient taskClient = KieServerRestUtils.getUserTaskServicesClient("bpmsAdmin", "password1!");
+        UserTaskServicesClient taskClient = KieServerRestUtils.getUserTaskServicesClient(USERNAME, PASSWORD);
 
         List<org.kie.server.api.model.instance.TaskSummary> taskList;
         taskList = taskClient.findTasksAssignedAsPotentialOwner("bpmsAdmin", 0, 100);
