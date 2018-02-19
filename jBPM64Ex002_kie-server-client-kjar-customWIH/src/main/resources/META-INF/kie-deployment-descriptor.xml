@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<deployment-descriptor xsi:schemaLocation="http://www.jboss.org/jbpm deployment-descriptor.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <runtime-strategy>PER_PROCESS_INSTANCE</runtime-strategy>
+    <work-item-handlers>
+        <work-item-handler>
+            <resolver>mvel</resolver>
+            <identifier>new com.sample.MyWorkItemHandler()</identifier>
+            <parameters/>
+            <name>MyService</name>
+        </work-item-handler>
+    </work-item-handlers>
+</deployment-descriptor>
