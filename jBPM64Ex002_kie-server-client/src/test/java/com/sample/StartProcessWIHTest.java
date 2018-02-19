@@ -18,7 +18,5 @@ public class StartProcessWIHTest extends TestCase {
 
         System.out.println("startProcess() : processInstanceId = " + processInstanceId);
 
-
-
     }
 }
