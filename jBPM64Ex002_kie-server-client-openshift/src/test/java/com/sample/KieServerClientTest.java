@@ -22,18 +22,8 @@ public class KieServerClientTest extends TestCase {
     private static final String USERNAME = "kieserver";
     private static final String PASSWORD = "kieserver1!";
 
-    //    private static final MarshallingFormat FORMAT = MarshallingFormat.JSON;
-    //    private static final MarshallingFormat FORMAT = MarshallingFormat.JAXB;
-
     @Test
     public void testProcess() {
-
-        KieServicesConfiguration config = KieServicesFactory.newRestConfiguration(BASE_URL, USERNAME, PASSWORD);
-        //        config.setMarshallingFormat(FORMAT);
-        Set<Class<?>> classes = new HashSet<Class<?>>();
-        classes.add(MyPojo.class);
-        config.addJaxbClasses(classes);
-        KieServicesClient client = KieServicesFactory.newKieServicesClient(config);
 
         Map<String, Object> params = new HashMap<String, Object>();
         ProcessServicesClient processClient = KieServerRestUtils.getProcessServicesClient();
@@ -42,14 +32,15 @@ public class KieServerClientTest extends TestCase {
         System.out.println("startProcess() : processInstanceId = " + processInstanceId);
 
         UserTaskServicesClient taskClient = KieServerRestUtils.getUserTaskServicesClient(USERNAME, PASSWORD);
+//        UserTaskServicesClient taskClient = KieServerRestUtils.getUserTaskServicesClient("bpmsAdmin", "password1!");
 
         List<org.kie.server.api.model.instance.TaskSummary> taskList;
-        taskList = taskClient.findTasksAssignedAsPotentialOwner("bpmsAdmin", 0, 100);
+        taskList = taskClient.findTasksAssignedAsPotentialOwner("kieserver", 0, 100);
         for (org.kie.server.api.model.instance.TaskSummary taskSummary : taskList) {
             System.out.println("taskSummary.getId() = " + taskSummary.getId());
             long taskId = taskSummary.getId();
-            taskClient.startTask(CONTAINER_ID, taskId, "bpmsAdmin");
-            taskClient.completeTask(CONTAINER_ID, taskId, "bpmsAdmin", null);
+            taskClient.startTask(CONTAINER_ID, taskId, "kieserver");
+            taskClient.completeTask(CONTAINER_ID, taskId, "kieserver", null);
         }
     }
 
