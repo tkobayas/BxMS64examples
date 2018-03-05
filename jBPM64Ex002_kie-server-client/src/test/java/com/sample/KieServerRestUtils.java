@@ -41,6 +41,7 @@ public class KieServerRestUtils {
         List<String> capabilities = new ArrayList<String>();
         capabilities.add(KieServerConstants.CAPABILITY_BPM);
         config.setCapabilities(capabilities);
+        config.setTimeout(600000);
         KieServicesClient client = KieServicesFactory.newKieServicesClient(config);
 
         UserTaskServicesClient userTaskServiceClient = client.getServicesClient(UserTaskServicesClient.class);
