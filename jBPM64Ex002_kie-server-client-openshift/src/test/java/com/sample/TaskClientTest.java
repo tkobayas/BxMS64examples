@@ -16,15 +16,15 @@ public class TaskClientTest extends TestCase {
     @Test
     public void testProcess() {
 
-        UserTaskServicesClient taskClient = KieServerRestUtils.getUserTaskServicesClient("bpmsAdmin", "password1!");
+        UserTaskServicesClient taskClient = KieServerRestUtils.getUserTaskServicesClient("john", "password1!");
 
         List<org.kie.server.api.model.instance.TaskSummary> taskList;
-        taskList = taskClient.findTasksAssignedAsPotentialOwner("bpmsAdmin", 0, 100);
+        taskList = taskClient.findTasksAssignedAsPotentialOwner("john", 0, 100);
         for (org.kie.server.api.model.instance.TaskSummary taskSummary : taskList) {
             System.out.println("taskSummary.getId() = " + taskSummary.getId());
             long taskId = taskSummary.getId();
-            taskClient.startTask(CONTAINER_ID, taskId, "bpmsAdmin");
-            taskClient.completeTask(CONTAINER_ID, taskId, "bpmsAdmin", null);
+            taskClient.startTask(CONTAINER_ID, taskId, "john");
+            taskClient.completeTask(CONTAINER_ID, taskId, "john", null);
         }
     }
 

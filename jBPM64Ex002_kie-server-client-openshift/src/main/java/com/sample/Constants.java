@@ -5,7 +5,7 @@ package com.sample;
 
 public class Constants {
     
-    public static final String BASE_URL = "http://kie-app-tkobayas-ips-proj1.apps.s.nekop.io/kie-server/services/rest/server";
+    public static final String BASE_URL = "http://kie-app-tkobayas-tmp14.apps.s.nekop.io/kie-server/services/rest/server";
     
     public static final String GROUP_ID = "org.kie.example";
     public static final String ARTIFACT_ID = "project5";
