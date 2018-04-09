@@ -1,0 +1,27 @@
+package com.sample
+ 
+import com.sample.DroolsTest.Message;
+ 
+rule "rule1"
+    salience -5
+    when
+        m : Message(  )
+    then
+        System.out.println( kcontext.getRule().getName());
+end
+
+rule "rule2"
+    when
+        m : Message(  )
+    then
+        System.out.println( kcontext.getRule().getName());
+end
+
+rule "rule3"
+	salience 100
+    when
+        m : Message(  )
+    then
+        System.out.println( kcontext.getRule().getName());
+end
+
