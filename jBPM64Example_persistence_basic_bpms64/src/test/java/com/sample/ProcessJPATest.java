@@ -59,7 +59,7 @@ public class ProcessJPATest {
         }
 
         Map configOverrides = new HashMap();
-        configOverrides.put("hibernate.hbm2ddl.auto", "create"); // Uncomment if you don't want to clean up tables
+        configOverrides.put("hibernate.hbm2ddl.auto", "create"); // comment out if you don't want to clean up tables
         if (H2) {
             configOverrides.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         } else {
