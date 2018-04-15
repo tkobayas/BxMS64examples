@@ -5,8 +5,10 @@ import org.junit.Test;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.rule.ConsequenceException;
+import org.kie.api.runtime.rule.Match;
 
-public class LHSExceptionTest {
+public class RHSExceptionTest {
 
 	@Test
 	public void testRule() {
@@ -33,6 +35,14 @@ public class LHSExceptionTest {
 			System.out.println("Thrown Exception = " + e.getClass());
 			System.out.println("       getCause() = " + e.getCause().getClass());
 			System.out.println();
+			
+			ConsequenceException ce = (ConsequenceException)e.getCause();
+			Match match = ce.getMatch();
+			System.out.println(match);
+			System.out.println(ce.getRule());
+			ce.printFacts();
+			
+			System.out.println("-----------------");
 
 			e.printStackTrace();
 		}
