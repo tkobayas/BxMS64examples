@@ -1,0 +1,32 @@
+package com.sample
+ 
+import com.sample.Person;
+import java.util.List;
+
+
+rule "Iterate LIst"
+	salience 1000
+	when
+		$list : List()
+		$p : Person() from $list
+	then
+		System.out.println("going to insert " + $p);
+		insert($p);
+end
+
+rule "Hello Group1"
+	ruleflow-group "group1"
+    when
+        $p : Person()
+    then
+        System.out.println( "Hello Group1 is called for : " + $p );
+end
+
+rule "Hello Group2"
+	ruleflow-group "group2"
+    when
+        $p : Person()
+    then
+        System.out.println( "Hello Group2 is called for : " + $p );
+        retract($p)
+end
