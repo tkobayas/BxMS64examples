@@ -1,0 +1,21 @@
+package com.sample
+ 
+import com.sample.Person;
+ 
+rule "Hello Group1"
+	ruleflow-group "group1"
+    when
+        $p : Person(age > 18)
+    then
+        $p.setSalary($p.getSalary() + 200);
+        System.out.println( "Hello Group1! : " + $p );
+end
+
+rule "Hello Group2"
+	ruleflow-group "group2"
+    when
+        $p : Person(name == "John")
+    then
+        $p.setSalary($p.getSalary() + 500);
+        System.out.println( "Hello Group2! : " + $p );
+end
