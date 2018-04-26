@@ -7,6 +7,8 @@ import static com.sample.Constants.GROUP_ID;
 import static com.sample.Constants.VERSION;
 
 import org.kie.server.api.model.KieContainerResource;
+import org.kie.server.api.model.KieScannerResource;
+import org.kie.server.api.model.KieScannerStatus;
 import org.kie.server.api.model.ReleaseId;
 import org.kie.server.api.model.ServiceResponse;
 import org.kie.server.client.KieServicesClient;
@@ -28,7 +30,8 @@ public class RestartContainerTest {
 
         ReleaseId releaseId = new ReleaseId(GROUP_ID, ARTIFACT_ID, VERSION);
         KieContainerResource resource = new KieContainerResource(CONTAINER_ID, releaseId);
-
+        KieScannerResource scanner = new KieScannerResource(KieScannerStatus.STARTED, 10000L);
+        resource.setScanner(scanner);
         ServiceResponse<KieContainerResource> response2 = client.createContainer(CONTAINER_ID, resource);
 
         System.out.println(response2);
