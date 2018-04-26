@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 import org.kie.api.KieServices;
+import org.kie.api.logger.KieRuntimeLogger;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
@@ -14,6 +15,8 @@ public class DroolsTest {
         KieServices ks = KieServices.Factory.get();
         KieContainer kContainer = ks.getKieClasspathContainer();
         KieSession ksession = kContainer.newKieSession();
+        
+        //KieRuntimeLogger logger = KieServices.Factory.get().getLoggers().newFileLogger(ksession, "mylog");
 
         ksession.setGlobal("results", new ArrayList<Person>());
         
@@ -27,7 +30,7 @@ public class DroolsTest {
         list.add(p3);
 
         ksession.insert(list);
-        ksession.fireAllRules();
+        //ksession.fireAllRules(); // No need to call fireAllRules() because rules are fired by Rule task in ruleflow
         
         System.out.println("----");
 
@@ -37,6 +40,8 @@ public class DroolsTest {
         
         System.out.println("results = " + ksession.getGlobal("results"));
 
+        //logger.close();
+        
         ksession.dispose();
     }
 }

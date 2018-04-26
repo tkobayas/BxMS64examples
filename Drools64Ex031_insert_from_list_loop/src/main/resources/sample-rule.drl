@@ -9,11 +9,10 @@ rule "Insert from List"
 	ruleflow-group "group0"
 	when
 		$list : List()
-		$p : Person() from $list
 	then
-		System.out.println("going to insert " + $p);
-		insert($p);
-		((org.drools.core.common.InternalAgenda)kcontext.getKnowledgeRuntime().getAgenda()).activateRuleFlowGroup("group1");
+		Person person = (Person)$list.get(0);
+		System.out.println("going to insert " + person);
+		insert(person);
 end
 
 rule "Hello Group1"
@@ -23,7 +22,6 @@ rule "Hello Group1"
     then
         System.out.println( "Hello Group1 is called for : " + $p );
         $p.setSalary($p.getSalary() + 100);
-        ((org.drools.core.common.InternalAgenda)kcontext.getKnowledgeRuntime().getAgenda()).activateRuleFlowGroup("group2");
 end
 
 rule "Hello Group2"
@@ -33,7 +31,6 @@ rule "Hello Group2"
     then
         System.out.println( "Hello Group2 is called for : " + $p );
         $p.setSalary($p.getSalary() + 200);
-        ((org.drools.core.common.InternalAgenda)kcontext.getKnowledgeRuntime().getAgenda()).activateRuleFlowGroup("group3");
 end
 
 rule "Remove from List"
