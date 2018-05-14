@@ -124,9 +124,8 @@
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:datasources:1.2">
             <datasources>
-<!--                 <datasource jta="true" jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true"> <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url> <driver>h2</driver> <security> <user-name>sa</user-name> <password>sa</password> </security> </datasource> -->
 
-<datasource jta="true" jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true"> <connection-url>jdbc:oracle:thin:@oracle-12cr2.hosts.mwqe.eng.bos.redhat.com:1521:dballo</connection-url> <driver>ojdbc7_12.1.0.2.jar</driver> <security> <user-name>dballo01</user-name> <password>dballo01</password> </security> </datasource><!-- ##DATASOURCES## -->
+<datasource jta="true" jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true"> <connection-url>jdbc:oracle:thin:@oracle-12cr2.hosts.mwqe.eng.bos.redhat.com:1521:dballo</connection-url> <driver>ojdbc7_12.1.0.2.jar</driver> <security> <user-name>dballo01</user-name> <password>dballo01</password> </security> </datasource>
 
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
