@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- origin at X=0.0 Y=0.0 -->
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmn20="http://www.omg.org/bpmn20" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" xmlns="http://www.jboss.org/drools" xmlns:java="http://www.java.com/javaTypes" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd" id="_VZ9osJiuEeWPg8j8RzJ4Sw" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.2.4.Final-v20160330-1625-B110" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.omg.org/bpmn20" typeLanguage="http://www.java.com/javaTypes">
+  <bpmn2:process id="project1.helloTimer" drools:packageName="org.jbpm" drools:version="1.0" name="helloTimer" isExecutable="true">
+    <bpmn2:startEvent id="processStartEvent" drools:bgcolor="#9acd32" drools:selectable="true" name="">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:outgoing>_F484D38D-B339-4798-BE59-B5C545C4883A</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:scriptTask id="_81A2F0F1-9051-4C8F-B977-4F1AF64B6F2D" drools:selectable="true" name="Script1" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Script1]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_F484D38D-B339-4798-BE59-B5C545C4883A</bpmn2:incoming>
+      <bpmn2:outgoing>_2402A814-58A8-43C4-A79C-1D62082543C8</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(&quot;Process Started&quot;);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="_F484D38D-B339-4798-BE59-B5C545C4883A" drools:bgcolor="#000000" drools:selectable="true" sourceRef="processStartEvent" targetRef="_81A2F0F1-9051-4C8F-B977-4F1AF64B6F2D"/>
+    <bpmn2:intermediateCatchEvent id="_810B0017-93D2-4B40-9F3C-D8746544E116" drools:bgcolor="#f5deb3" drools:selectable="true" drools:bordercolor="#a0522d" drools:boundaryca="false" name="">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_2402A814-58A8-43C4-A79C-1D62082543C8</bpmn2:incoming>
+      <bpmn2:outgoing>_45DFD5A3-D51E-428C-B210-BA80713E5D3A</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition id="_VZ9osZiuEeWPg8j8RzJ4Sw">
+        <bpmn2:timeDuration xsi:type="bpmn2:tFormalExpression" id="_VZ9ospiuEeWPg8j8RzJ4Sw">30s</bpmn2:timeDuration>
+      </bpmn2:timerEventDefinition>
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:sequenceFlow id="_2402A814-58A8-43C4-A79C-1D62082543C8" drools:bgcolor="#000000" drools:selectable="true" sourceRef="_81A2F0F1-9051-4C8F-B977-4F1AF64B6F2D" targetRef="_810B0017-93D2-4B40-9F3C-D8746544E116"/>
+    <bpmn2:endEvent id="_68B04BD7-2B30-4FB9-9A72-6E68D23BF190" drools:bgcolor="#ff6347" drools:selectable="true" name="">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_65F793D8-D12A-4F8E-B609-FD7878289D39</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:scriptTask id="_96DC629A-294D-40B1-A9AE-157072CA7ED4" drools:selectable="true" name="Script2" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Script2]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_45DFD5A3-D51E-428C-B210-BA80713E5D3A</bpmn2:incoming>
+      <bpmn2:outgoing>_65F793D8-D12A-4F8E-B609-FD7878289D39</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(&quot;Timer is triggered&quot;);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="_45DFD5A3-D51E-428C-B210-BA80713E5D3A" drools:bgcolor="#000000" drools:selectable="true" sourceRef="_810B0017-93D2-4B40-9F3C-D8746544E116" targetRef="_96DC629A-294D-40B1-A9AE-157072CA7ED4"/>
+    <bpmn2:sequenceFlow id="_65F793D8-D12A-4F8E-B609-FD7878289D39" drools:bgcolor="#000000" drools:selectable="true" sourceRef="_96DC629A-294D-40B1-A9AE-157072CA7ED4" targetRef="_68B04BD7-2B30-4FB9-9A72-6E68D23BF190"/>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="_VZ-PwJiuEeWPg8j8RzJ4Sw">
+    <bpmndi:BPMNPlane id="_VZ-PwZiuEeWPg8j8RzJ4Sw" bpmnElement="project1.helloTimer">
+      <bpmndi:BPMNShape id="_VZ-PwpiuEeWPg8j8RzJ4Sw" bpmnElement="processStartEvent">
+        <dc:Bounds height="30.0" width="30.0" x="120.0" y="165.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_VZ-Pw5iuEeWPg8j8RzJ4Sw" bpmnElement="_81A2F0F1-9051-4C8F-B977-4F1AF64B6F2D">
+        <dc:Bounds height="80.0" width="100.0" x="195.0" y="140.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="14.0" width="38.0" x="226.0" y="173.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_VZ-PxZiuEeWPg8j8RzJ4Sw" bpmnElement="_810B0017-93D2-4B40-9F3C-D8746544E116">
+        <dc:Bounds height="30.0" width="30.0" x="390.0" y="165.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_VZ-Px5iuEeWPg8j8RzJ4Sw" bpmnElement="_68B04BD7-2B30-4FB9-9A72-6E68D23BF190">
+        <dc:Bounds height="28.0" width="28.0" x="689.0" y="165.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_VZ-PyJiuEeWPg8j8RzJ4Sw" bpmnElement="_96DC629A-294D-40B1-A9AE-157072CA7ED4">
+        <dc:Bounds height="80.0" width="100.0" x="480.0" y="140.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="14.0" width="38.0" x="511.0" y="173.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="_VZ-PxJiuEeWPg8j8RzJ4Sw" bpmnElement="_F484D38D-B339-4798-BE59-B5C545C4883A" sourceElement="_VZ-PwpiuEeWPg8j8RzJ4Sw" targetElement="_VZ-Pw5iuEeWPg8j8RzJ4Sw">
+        <di:waypoint xsi:type="dc:Point" x="135.0" y="180.0"/>
+        <di:waypoint xsi:type="dc:Point" x="245.0" y="180.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_VZ-PxpiuEeWPg8j8RzJ4Sw" bpmnElement="_2402A814-58A8-43C4-A79C-1D62082543C8" sourceElement="_VZ-Pw5iuEeWPg8j8RzJ4Sw" targetElement="_VZ-PxZiuEeWPg8j8RzJ4Sw">
+        <di:waypoint xsi:type="dc:Point" x="245.0" y="180.0"/>
+        <di:waypoint xsi:type="dc:Point" x="405.0" y="180.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_VZ-PyZiuEeWPg8j8RzJ4Sw" bpmnElement="_45DFD5A3-D51E-428C-B210-BA80713E5D3A" sourceElement="_VZ-PxZiuEeWPg8j8RzJ4Sw" targetElement="_VZ-PyJiuEeWPg8j8RzJ4Sw">
+        <di:waypoint xsi:type="dc:Point" x="405.0" y="180.0"/>
+        <di:waypoint xsi:type="dc:Point" x="530.0" y="180.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_VZ-PypiuEeWPg8j8RzJ4Sw" bpmnElement="_65F793D8-D12A-4F8E-B609-FD7878289D39" sourceElement="_VZ-PyJiuEeWPg8j8RzJ4Sw" targetElement="_VZ-Px5iuEeWPg8j8RzJ4Sw">
+        <di:waypoint xsi:type="dc:Point" x="530.0" y="180.0"/>
+        <di:waypoint xsi:type="dc:Point" x="703.0" y="179.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
