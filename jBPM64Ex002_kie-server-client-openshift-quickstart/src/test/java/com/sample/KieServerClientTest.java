@@ -26,7 +26,7 @@ import org.openshift.quickstarts.processserver.library.types.SuggestionResponse;
 public class KieServerClientTest extends TestCase {
 
     private static final String USERNAME = "kieserver";
-    private static final String PASSWORD = "kieserver1!";
+    private static final String PASSWORD = "meGiib2!";
 
     //    private static final MarshallingFormat FORMAT = MarshallingFormat.JSON;
     //    private static final MarshallingFormat FORMAT = MarshallingFormat.JAXB;

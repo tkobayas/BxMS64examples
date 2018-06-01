@@ -5,7 +5,7 @@
     <org.drools.core.audit.event.ObjectLogEvent>
       <type>1</type>
       <factId>1</factId>
-      <objectToString>com.sample.DroolsTest$Message@30bcf3c1</objectToString>
+      <objectToString>com.sample.DroolsTest$Message@40dff0b7</objectToString>
     </org.drools.core.audit.event.ObjectLogEvent>
     <org.drools.core.audit.event.RuleFlowGroupLogEvent>
       <type>12</type>

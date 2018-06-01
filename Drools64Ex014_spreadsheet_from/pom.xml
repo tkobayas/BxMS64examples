@@ -49,10 +49,5 @@
       <version>${drools.version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-test</artifactId>
-      <version>${drools.version}</version>
-    </dependency>
   </dependencies>
 </project>
