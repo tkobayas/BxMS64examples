@@ -25,6 +25,7 @@ import org.kie.api.runtime.manager.RuntimeManagerFactory;
 import org.kie.api.runtime.process.ProcessInstance;
 import org.kie.api.task.TaskService;
 import org.kie.api.task.UserGroupCallback;
+import org.kie.api.task.model.Status;
 import org.kie.api.task.model.TaskSummary;
 import org.kie.internal.runtime.manager.context.ProcessInstanceIdContext;
 
@@ -94,13 +95,14 @@ public class CallKjarTest {
         RuntimeEngine runtimeEngine2 = runtimeManager.getRuntimeEngine( ProcessInstanceIdContext.get( piid )) ;
         TaskService taskService = runtimeEngine2.getTaskService();
 
-        {
-            List<TaskSummary> list = taskService.getTasksAssignedAsPotentialOwner("bpmsAdmin", "en-UK");
-            for (TaskSummary taskSummary : list) {
+        List<TaskSummary> list = taskService.getTasksAssignedAsPotentialOwner("bpmsAdmin", "en-UK");
+        for (TaskSummary taskSummary : list) {
+            if (taskSummary.getStatus().equals(Status.Ready) || taskSummary.getStatus().equals(Status.Reserved)) {
                 System.out.println("bpmsAdmin starts a task : taskId = " + taskSummary.getId());
                 taskService.start(taskSummary.getId(), "bpmsAdmin");
-                taskService.complete(taskSummary.getId(), "bpmsAdmin", null);
             }
+            System.out.println("bpmsAdmin completes a task : taskId = " + taskSummary.getId());
+            taskService.complete(taskSummary.getId(), "bpmsAdmin", null);
         }
 
         runtimeManager.disposeRuntimeEngine(runtimeEngine2);
