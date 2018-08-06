@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ (C) 2014 HANSEN TECHNOLOGIES
+ All Rights Reserved. CONFIDENTIAL BUSINESS INFORMATION
+ THIS PROGRAM IS PROPRIETARY INFORMATION OF HANSEN TECHNOLOGIES AND
+ IS NOT TO BE COPIED, REPRODUCED, LENT, OR DISPOSED OF,
+ USED FOR ANY PURPOSE OTHER THAN THAT WHICH IT IS SPECIFICALLY
+ PROVIDED WITHOUT THE WRITTEN PERMISSION OF THE SAID COMPANY
+
+ AUDIT TRAIL                                            INIT/UNIT     DATE
+ ==================================================    ============ ===========
+ Release 5.0
+ 1. C99999 / IB-99999                                   liuy/HANSEN 26-Nov-2014
+    Initial version.
+
+-->
+
+<Configuration status="INFO">
+    <Properties>
+        <Property name="log-path">logs</Property>
+    </Properties>
+    <Appenders>
+        <Console name="console-log" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] [%-5level] %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.hsntech" level="debug" additivity="false">
+            <appender-ref ref="console-log" level="debug"/>
+        </Logger>
+        <Root level="info" additivity="false">
+            <AppenderRef ref="console-log"/>
+        </Root>
+    </Loggers>
+</Configuration>
