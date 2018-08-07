@@ -17,6 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.kie.api.KieServices;
 import org.kie.api.builder.ReleaseId;
+import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.manager.RuntimeEngine;
 import org.kie.api.runtime.manager.RuntimeEnvironment;
@@ -31,7 +32,7 @@ import org.kie.internal.runtime.manager.context.ProcessInstanceIdContext;
 
 import bitronix.tm.resource.jdbc.PoolingDataSource;
 
-public class CallKjarTest2 {
+public class StartProcessWith100 {
 
     private static EntityManagerFactory emf;
 
@@ -44,13 +45,13 @@ public class CallKjarTest2 {
         ds = setupDataSource();
 
         Map configOverrides = new HashMap();
-//        configOverrides.put("hibernate.hbm2ddl.auto", "create"); // comment out if you don't want to clean up tables
+        configOverrides.put("hibernate.hbm2ddl.auto", "create"); // comment out if you don't want to clean up tables
 
         configOverrides.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect"); // Change for other DB
 
         //            configOverrides.put("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect"); // Change for other DB
 
-        emf = Persistence.createEntityManagerFactory("org.jbpm.example", configOverrides);
+        emf = Persistence.createEntityManagerFactory("org.jbpm.domain", configOverrides);
     }
 
     @After
@@ -65,43 +66,50 @@ public class CallKjarTest2 {
 
         String groupId = "com.sample";
         String artifactId = "migration-example";
-        String version = "2.0.0";
+        String version = "1.0.0";
 
         KieServices ks = KieServices.Factory.get();
         ReleaseId releaseId = ks.newReleaseId(groupId, artifactId, version);
+        KieContainer kieContainer = ks.newKieContainer(releaseId);
 
         Properties properties = new Properties();
         properties.setProperty("bpmsAdmin", "");
         UserGroupCallback userGroupCallback = new JBossUserGroupCallbackImpl(properties);
 
-        RuntimeEnvironment environment = RuntimeEnvironmentBuilder.Factory.get().newDefaultBuilder(releaseId).persistence(true).entityManagerFactory(emf).userGroupCallback(userGroupCallback).get();
+        RuntimeEnvironment environment = RuntimeEnvironmentBuilder.Factory.get()
+                .newDefaultBuilder(releaseId)
+                .persistence(true)
+                .entityManagerFactory(emf)
+                .userGroupCallback(userGroupCallback)
+                .addEnvironmentEntry("KieContainer", kieContainer)
+                .get();
         RuntimeManager runtimeManager = RuntimeManagerFactory.Factory.get().newPerProcessInstanceRuntimeManager(environment, releaseId.toExternalForm());
-//        RuntimeEngine runtimeEngine = runtimeManager.getRuntimeEngine(ProcessInstanceIdContext.get());
-//        KieSession ksession = runtimeEngine.getKieSession();
-//
-//        // start a new process instance
-//        Map<String, Object> params = new HashMap<String, Object>();
-//        ProcessInstance pi = ksession.startProcess("project1.helloProcess", params);
-//        long piid = pi.getId();
-//        System.out.println("A process instance started : piid = " + piid);
-//
-//        runtimeManager.disposeRuntimeEngine(runtimeEngine);
+        RuntimeEngine runtimeEngine = runtimeManager.getRuntimeEngine(ProcessInstanceIdContext.get());
+        KieSession ksession = runtimeEngine.getKieSession();
+
+        // start a new process instance
+        Map<String, Object> params = new HashMap<String, Object>();
+        ProcessInstance pi = ksession.startProcess("project1.helloProcess", params);
+        long piid = pi.getId();
+        System.out.println("A process instance started : piid = " + piid);
+
+        runtimeManager.disposeRuntimeEngine(runtimeEngine);
 
         // work on task
-        RuntimeEngine runtimeEngine2 = runtimeManager.getRuntimeEngine(ProcessInstanceIdContext.get(1L));
-        TaskService taskService = runtimeEngine2.getTaskService();
-
-        List<TaskSummary> list = taskService.getTasksAssignedAsPotentialOwner("bpmsAdmin", "en-UK");
-        for (TaskSummary taskSummary : list) {
-            if (taskSummary.getStatus().equals(Status.Ready) || taskSummary.getStatus().equals(Status.Reserved)) {
-                System.out.println("bpmsAdmin starts a task : taskId = " + taskSummary.getId());
-                taskService.start(taskSummary.getId(), "bpmsAdmin");
-            }
-            System.out.println("bpmsAdmin completes a task : taskId = " + taskSummary.getId());
-            taskService.complete(taskSummary.getId(), "bpmsAdmin", null);
-        }
-
-        runtimeManager.disposeRuntimeEngine(runtimeEngine2);
+//        RuntimeEngine runtimeEngine2 = runtimeManager.getRuntimeEngine(ProcessInstanceIdContext.get(piid));
+//        TaskService taskService = runtimeEngine2.getTaskService();
+//
+//        List<TaskSummary> list = taskService.getTasksAssignedAsPotentialOwner("bpmsAdmin", "en-UK");
+//        for (TaskSummary taskSummary : list) {
+//            if (taskSummary.getStatus().equals(Status.Ready) || taskSummary.getStatus().equals(Status.Reserved)) {
+//                System.out.println("bpmsAdmin starts a task : taskId = " + taskSummary.getId());
+//                taskService.start(taskSummary.getId(), "bpmsAdmin");
+//            }
+//            System.out.println("bpmsAdmin completes a task : taskId = " + taskSummary.getId());
+//            taskService.complete(taskSummary.getId(), "bpmsAdmin", null);
+//        }
+//
+//        runtimeManager.disposeRuntimeEngine(runtimeEngine2);
 
         // -----------
     }
