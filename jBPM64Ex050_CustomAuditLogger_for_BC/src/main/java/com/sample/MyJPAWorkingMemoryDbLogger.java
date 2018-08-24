@@ -20,7 +20,7 @@ public class MyJPAWorkingMemoryDbLogger extends JPAWorkingMemoryDbLogger {
         super(ksession.getEnvironment()); // super(ksession) will cause duplicate registering
     }
 
-    private void initialze(KieRuntime kieRuntime) {
+    private void initialize(KieRuntime kieRuntime) {
         System.out.println("  initializing...");
         ServicesAwareAuditEventBuilder auditBuilder = new ServicesAwareAuditEventBuilder();
         InternalRuntimeManager runtimeManager = (InternalRuntimeManager) kieRuntime.getEnvironment().get("RuntimeManager");
@@ -36,7 +36,7 @@ public class MyJPAWorkingMemoryDbLogger extends JPAWorkingMemoryDbLogger {
 
         synchronized (this) {
             if (!initialized) {
-                initialze(event.getKieRuntime());
+                initialize(event.getKieRuntime());
             }
         }
 
@@ -62,7 +62,7 @@ public class MyJPAWorkingMemoryDbLogger extends JPAWorkingMemoryDbLogger {
         // This may be called earlier than beforeProcessStarted()
         synchronized (this) {
             if (!initialized) {
-                initialze(event.getKieRuntime());
+                initialize(event.getKieRuntime());
             }
         }
 

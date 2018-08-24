@@ -73,7 +73,7 @@ public class EmbeddedMigrationService extends AbstractMigrationService {
         }
 
         Map<String, String> nodeMapping = new HashMap<String, String>();
-        nodeMapping.put("_09144120-B114-451A-A0E9-8425D6955190", "_DDD56188-8EE5-40B4-80ED-AF34D3D5B696"); // put(oldNodeId, newNodeId);
+//        nodeMapping.put("_09144120-B114-451A-A0E9-8425D6955190", "_DDD56188-8EE5-40B4-80ED-AF34D3D5B696"); // put(oldNodeId, newNodeId);
         
         MigrationReport report = migrationService.migrate(sourceDeployment.getIdentifier(), processInstanceId, targetDeployment.getIdentifier(), targetProcessId, nodeMapping);
         if (report.isSuccessful()) {

@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.jbpm.process.audit.JPAWorkingMemoryDbLogger;
 import org.jbpm.runtime.manager.impl.ManagedAuditEventBuilderImpl;
+import org.jbpm.runtime.manager.impl.SimpleRuntimeEnvironment;
 import org.kie.api.event.process.ProcessCompletedEvent;
 import org.kie.api.event.process.ProcessEventListener;
 import org.kie.api.event.process.ProcessNodeLeftEvent;
@@ -38,6 +39,10 @@ public class MyProcessEventListener implements ProcessEventListener {
             myJPAWorkingMemoryDbLogger.setBuilder(auditBuilder);
             kieRuntime.addEventListener(myJPAWorkingMemoryDbLogger);
         }
+        
+        // Can get identityProvider ? and create ServicesAwareAuditEventBuilder?
+        //             ((SimpleRuntimeEnvironment) environemnt).addToEnvironment("IdentityProvider", identityProvider);
+
     }
 
     public void afterProcessStarted(ProcessStartedEvent event) {
