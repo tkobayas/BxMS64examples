@@ -37,25 +37,11 @@ public class CustomRequeueRunningJobsCommand implements Command, Reoccurring {
     private String theOtherKieServerUrl = System.getProperty("org.kie.server.location.other");
     private String heartbeatTimeoutStr = System.getProperty("CustomRequeueRunningJobsCommand.heartbeatTimeout");
     private int heartbeatTimeout = DEFAULT_TIMEOUT;
-    
+
     private String kieServerUser = System.getProperty("org.kie.server.user");
     private String kieServerPassword = System.getProperty("org.kie.server.pwd");
 
-
     public ExecutionResults execute(CommandContext ctx) {
-        
-        if (theOtherKieServerUrl == null || theOtherKieServerUrl.isEmpty()) {
-            logger.warn("System property 'org.kie.server.location.other' is not configured. Heartbeat check is skipped."); // go ahead
-        } else {
-            boolean available = pingUrl(theOtherKieServerUrl);
-            if (available) {
-                logger.info("No need to requeue");
-                ExecutionResults executionResults = new ExecutionResults();
-                return executionResults;
-            } else {
-                logger.info("Check requeue");
-            }
-        }
 
         Long maxRunningTimeConfigured = (Long) ctx.getData("MaxRunningTime");
         if (maxRunningTimeConfigured == null) {
@@ -67,7 +53,22 @@ public class CustomRequeueRunningJobsCommand implements Command, Reoccurring {
         if (runPeriodConfigured == null) {
             logger.warn("RunPeriod is not configured. Default is " + DEFAULT_RUN_PERIOD + "ms");
         } else {
+            logger.info("runPeriod = " + runPeriod);
             runPeriod = runPeriodConfigured;
+        }
+
+        if (theOtherKieServerUrl == null || theOtherKieServerUrl.isEmpty()) {
+            logger.warn("System property 'org.kie.server.location.other' is not configured. Heartbeat check is skipped."); // go ahead
+        } else {
+            boolean available = pingUrl(theOtherKieServerUrl);
+            if (available) {
+                logger.info("No need to requeue");
+                logger.info("Command executed on executor with data {}", ctx.getData());
+                ExecutionResults executionResults = new ExecutionResults();
+                return executionResults;
+            } else {
+                logger.info("Check requeue");
+            }
         }
 
         try {
@@ -91,8 +92,8 @@ public class CustomRequeueRunningJobsCommand implements Command, Reoccurring {
     private boolean pingUrl(String url) {
         boolean available = false;
         try {
-            HttpURLConnection connection = (HttpURLConnection)new URL(url).openConnection();
-            
+            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+
             if (heartbeatTimeoutStr == null || heartbeatTimeoutStr.isEmpty()) {
                 logger.debug("System property 'CustomRequeueRunningJobsCommand.heartbeatTimeout' is not configured. Default is " + DEFAULT_TIMEOUT + "ms");
                 heartbeatTimeout = DEFAULT_TIMEOUT;
@@ -107,12 +108,12 @@ public class CustomRequeueRunningJobsCommand implements Command, Reoccurring {
                     heartbeatTimeout = DEFAULT_TIMEOUT;
                 }
             }
-            
+
             connection.setConnectTimeout(heartbeatTimeout);
             connection.setReadTimeout(heartbeatTimeout);
-            
+
             ((HttpURLConnection) connection).setRequestMethod("HEAD");
-            
+
             String userpassword = kieServerUser + ":" + kieServerPassword;
 
             String authorization = "Basic " + Base64.getEncoder().encodeToString(userpassword.getBytes());
@@ -133,7 +134,7 @@ public class CustomRequeueRunningJobsCommand implements Command, Reoccurring {
     public Date getScheduleTime() {
         long current = System.currentTimeMillis();
         Date nextSchedule = new Date(current + runPeriod);
-        logger.debug("Next schedule for job {} is set to {}", this.getClass().getSimpleName(), nextSchedule);
+        logger.info("Next schedule for job {} is set to {}", this.getClass().getSimpleName(), nextSchedule);
         return nextSchedule;
     }
 
