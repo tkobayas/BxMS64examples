@@ -1,0 +1,14 @@
+package com.sample
+
+import com.sample.ParkingEvent;
+
+declare ParkingEvent
+    @role( event )
+end
+
+rule "Hello Event"
+    when
+        $p : ParkingEvent( ) from entry-point "parking"
+    then
+        System.out.println( $p.toString() );
+end

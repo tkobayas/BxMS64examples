@@ -1,0 +1,19 @@
+package com.sample
+
+import com.sample.ParkingEvent;
+
+declare ParkingEvent
+    @role( event )
+end
+
+// car1 enters a zone
+// car1 hasn't exited yet
+// car2 enters the same zone
+rule "Consecutive Enter"
+    when
+        $p1 : ParkingEvent( $car1 : car, $zone1 : zone, type == ParkingEvent.ENTER ) from entry-point "parking"
+        not ParkingEvent( car == $car1, zone == $zone1, type == ParkingEvent.EXIT, this after $p1 ) from entry-point "parking"
+        $p2 : ParkingEvent( zone == $zone1, type == ParkingEvent.ENTER, this after $p1 ) from entry-point "parking"
+    then
+        System.out.println( "Consecutive Enter : [" + $p1 + "] => [" + $p2 + "]");
+end
