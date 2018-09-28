@@ -53,8 +53,8 @@ public class CustomRequeueRunningJobsCommand implements Command, Reoccurring {
         if (runPeriodConfigured == null) {
             logger.warn("RunPeriod is not configured. Default is " + DEFAULT_RUN_PERIOD + "ms");
         } else {
-            logger.info("runPeriod = " + runPeriod);
             runPeriod = runPeriodConfigured;
+            logger.info("runPeriod = " + runPeriod);
         }
 
         if (theOtherKieServerUrl == null || theOtherKieServerUrl.isEmpty()) {

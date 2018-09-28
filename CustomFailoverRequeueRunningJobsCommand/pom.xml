@@ -6,7 +6,7 @@
 
   <groupId>com.sample</groupId>
   <artifactId>custom-requeue-running-job-command</artifactId>
-  <version>0.0.3</version>
+  <version>0.0.4</version>
 
   <dependencyManagement>
     <dependencies>
