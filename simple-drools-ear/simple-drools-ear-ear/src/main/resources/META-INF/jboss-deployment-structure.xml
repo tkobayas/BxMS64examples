@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<!-- 
+	<deployment>
+	</deployment>
+	
+	<sub-deployment name="simple-ejb-ear-web.war">
+		<dependencies>
+			<module name="org.jboss.remote-naming" slot="main" />
+		</dependencies>
+	</sub-deployment>
+ -->
+ 
+</jboss-deployment-structure>
