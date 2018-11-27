@@ -7,6 +7,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Base64;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.jbpm.executor.ExecutorServiceFactory;
 import org.jbpm.executor.RequeueAware;
@@ -40,6 +41,9 @@ public class CustomRequeueRunningJobsCommand implements Command, Reoccurring {
 
     private String kieServerUser = System.getProperty("org.kie.server.user");
     private String kieServerPassword = System.getProperty("org.kie.server.pwd");
+
+    // You have to set "org.kie.executor.jbpm7837.fixed" to "true" since RHPAM 7.2.0 (See JBPM-7837)
+    private String jbpm7837fixedStr = System.getProperty("org.kie.executor.jbpm7837.fixed", "false");
 
     public ExecutionResults execute(CommandContext ctx) {
 
@@ -75,7 +79,24 @@ public class CustomRequeueRunningJobsCommand implements Command, Reoccurring {
             ExecutorService executorService = ExecutorServiceFactory.newExecutorService(null);
             if (executorService instanceof RequeueAware) {
                 logger.info("Requeue jobs older than {}", maxRunningTime);
-                ((RequeueAware) executorService).requeue(maxRunningTime);
+
+                long olderThan = maxRunningTime;
+
+                boolean jbpm7837fixed = false;
+                if (jbpm7837fixedStr == null || jbpm7837fixedStr.isEmpty()) {
+                    logger.info("System property 'org.kie.executor.jbpm7837.fixed' is not configured. Default is false");
+                    jbpm7837fixed = false;
+                } else {
+                    jbpm7837fixed = Boolean.parseBoolean(jbpm7837fixedStr);
+                    logger.info("jbpm7837fixed is " + jbpm7837fixed);
+                }
+
+                if (!jbpm7837fixed && executorService.getTimeunit().equals(TimeUnit.SECONDS)) {
+                    olderThan = maxRunningTime * 1000; // Amendment fo JBPM-7837. This is required until RHPAM 7.2.0
+                    logger.info("TimeUnit is TimeUnit.SECONDS. Amendment for olderThan calculation");
+                }
+
+                ((RequeueAware) executorService).requeue(olderThan);
             } else {
                 logger.info("Executor Service is not capable of jobs requeue");
             }
