@@ -24,8 +24,6 @@ public class JSONMarshallerExtensionPascalCase implements JSONMarshallerExtensio
 
     @Override
     public void extend(JSONMarshaller marshaller, ObjectMapper serializer, ObjectMapper deserializer) {
-
-        System.out.println("JSONMarshallerExtensionPascalCase !");
         serializer.setPropertyNamingStrategy(new PascalCaseStrategy());
         deserializer.setPropertyNamingStrategy(new PascalCaseStrategy());
     }
