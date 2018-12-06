@@ -23,6 +23,15 @@
       <version>${drools.version}</version>
       <scope>provided</scope>
     </dependency>
+    
+    
+        <dependency>
+      <groupId>org.kie</groupId>
+      <artifactId>kie-api-xxx</artifactId>
+      <version>${drools.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    
   </dependencies>
 
   <repositories>
