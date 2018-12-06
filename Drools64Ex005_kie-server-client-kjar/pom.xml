@@ -25,41 +25,41 @@
     </dependency>
     
     
-        <dependency>
-      <groupId>org.kie</groupId>
-      <artifactId>kie-api-xxx</artifactId>
-      <version>${drools.version}</version>
-      <scope>provided</scope>
-    </dependency>
+<!--         <dependency> -->
+<!--       <groupId>org.kie</groupId> -->
+<!--       <artifactId>kie-api-xxx</artifactId> -->
+<!--       <version>${drools.version}</version> -->
+<!--       <scope>provided</scope> -->
+<!--     </dependency> -->
     
   </dependencies>
 
   <repositories>
   
-          <repository>
-          <id>central</id>
-          <url>http://repo.maven.apache.org/maven2</url>
-          <releases>
-            <enabled>false</enabled>
-            <updatePolicy>never</updatePolicy>
-          </releases>
-        </repository>
+<!--           <repository> -->
+<!--           <id>central</id> -->
+<!--           <url>http://repo.maven.apache.org/maven2</url> -->
+<!--           <releases> -->
+<!--             <enabled>false</enabled> -->
+<!--             <updatePolicy>never</updatePolicy> -->
+<!--           </releases> -->
+<!--         </repository> -->
   
   
-    <repository>
-      <id>jboss-public-repository-groupXXX</id>
-      <name>JBoss Public Repository GroupXXX</name>
-      <url>http://repositoryXXX.jboss.org/nexus/content/groups/public/</url>
-      <layout>default</layout>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>daily</updatePolicy>
-      </snapshots>
-    </repository>
+<!--     <repository> -->
+<!--       <id>jboss-public-repository-groupXXX</id> -->
+<!--       <name>JBoss Public Repository GroupXXX</name> -->
+<!--       <url>http://repository.jboss.org/nexus/content/groups/public/</url> -->
+<!--       <layout>default</layout> -->
+<!--       <releases> -->
+<!--         <enabled>true</enabled> -->
+<!--         <updatePolicy>never</updatePolicy> -->
+<!--       </releases> -->
+<!--       <snapshots> -->
+<!--         <enabled>true</enabled> -->
+<!--         <updatePolicy>daily</updatePolicy> -->
+<!--       </snapshots> -->
+<!--     </repository> -->
 
   </repositories>
 
