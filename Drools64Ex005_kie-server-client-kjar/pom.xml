@@ -40,19 +40,7 @@
         <updatePolicy>daily</updatePolicy>
       </snapshots>
     </repository>
-
-    <repository>
-      <id>rh-all</id>
-      <url>http://maven.repository.redhat.com/ga</url>
-      <layout>default</layout>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
+xx
   </repositories>
 
   <pluginRepositories>
