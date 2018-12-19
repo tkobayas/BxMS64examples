@@ -1,0 +1,10 @@
+package com.sample
+ 
+import com.sample.Person;
+ 
+rule "Hello"
+    when
+        $p : Person( names[0] == "john" )
+    then
+        System.out.println( "Hello, " + $p.getNames());
+end
