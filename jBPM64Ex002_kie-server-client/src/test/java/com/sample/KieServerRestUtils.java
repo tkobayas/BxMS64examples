@@ -3,9 +3,11 @@ package com.sample;
 import static com.sample.Constants.BASE_URL;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.kie.server.api.KieServerConstants;
+import org.kie.server.api.marshalling.MarshallingFormat;
 import org.kie.server.client.KieServicesClient;
 import org.kie.server.client.KieServicesConfiguration;
 import org.kie.server.client.KieServicesFactory;
@@ -76,6 +78,13 @@ public class KieServerRestUtils {
         List<String> capabilities = new ArrayList<String>();
         capabilities.add(KieServerConstants.CAPABILITY_BPM);
         config.setCapabilities(capabilities);
+        
+//        config.setMarshallingFormat(MarshallingFormat.JSON);
+//        
+//        HashSet<Class<?>> classes = new HashSet<Class<?>>();
+//        classes.add(Person.class);
+//        config.addExtraClasses(classes);
+        
         KieServicesClient client = KieServicesFactory.newKieServicesClient(config);
 
         ProcessServicesClient processServiceClient = client.getServicesClient(ProcessServicesClient.class);

@@ -13,6 +13,15 @@
     <drools.version>6.5.0.Final-redhat-2</drools.version>
   </properties>
 
+  <distributionManagement>
+    <repository>
+      <id>guvnor-m2-repo</id>
+      <name>maven repo</name>
+      <url>http://localhost:8080/business-central/maven2/</url>
+      <layout>default</layout>
+    </repository>
+  </distributionManagement>
+
   <dependencies>
     <dependency>
       <groupId>com.sample</groupId>
