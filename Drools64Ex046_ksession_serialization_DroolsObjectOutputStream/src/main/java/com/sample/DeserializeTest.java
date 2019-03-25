@@ -24,12 +24,14 @@ public class DeserializeTest {
         // Deserialize
         try (FileInputStream in = new FileInputStream("./ksession.out");
                 DroolsObjectInputStream dois = new DroolsObjectInputStream(in);) {
-            
+
             kSession = (KieSession) dois.readObject();
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+        // NOTE: This fails with NPE. Use Drools64Ex045_ksession_serialization example
 
         // go !
         Person paul = new Person("Paul", 30);
