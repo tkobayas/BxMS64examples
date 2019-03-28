@@ -1,0 +1,10 @@
+package com.sample
+ 
+import example.scorecard_example.Customer;
+ 
+rule "Hello"
+    when
+        $c : Customer(  )
+    then
+        System.out.println( "Hello, " + $c.getName());
+end
