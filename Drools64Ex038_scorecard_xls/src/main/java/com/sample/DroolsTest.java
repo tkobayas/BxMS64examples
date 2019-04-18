@@ -1,6 +1,5 @@
 package com.sample;
 
-import example.scorecard_example.Customer;
 import org.dmg.pmml.pmml_4_2.descr.PMML;
 import org.drools.pmml.pmml_4_2.PMML4Compiler;
 import org.drools.scorecards.ScorecardCompiler;
