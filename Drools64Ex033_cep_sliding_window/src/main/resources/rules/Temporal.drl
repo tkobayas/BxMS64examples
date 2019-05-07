@@ -1,0 +1,17 @@
+package com.sample
+
+import com.sample.ParkingEvent;
+
+declare ParkingEvent
+    @role( event )
+end
+
+rule "Sliding Window"
+    when
+         $n : Number() from accumulate(
+           $p : ParkingEvent() over window:time(2s) from entry-point "parking",
+           count($p)
+         )
+    then
+        System.out.println( "Sliding Window : [" + $n + "]");
+end
