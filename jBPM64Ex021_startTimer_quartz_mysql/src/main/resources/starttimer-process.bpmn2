@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- origin at X=0.0 Y=0.0 -->
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmn20="http://www.omg.org/bpmn20" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" xmlns="http://www.jboss.org/drools" xmlns:java="http://www.java.com/javaTypes" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd" id="_HDFZ0ZpZEeOJYp17EmksGQ" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.2.4.Final-v20160330-1625-B110" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.omg.org/bpmn20" typeLanguage="http://www.java.com/javaTypes">
+  <bpmn2:process id="starttimer-process" drools:packageName="org.jbpm" drools:version="1.0" name="starttimer-process" isExecutable="true">
+    <bpmn2:scriptTask id="_1801BDA4-C29D-4586-9445-5080EF577DF9" drools:selectable="true" name="Print time!" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Print time!]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(new java.util.Date() + &quot; : *** ScriptTask triggered&quot;);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:endEvent id="_1174F797-8178-4A75-A95F-E4834D9C2456" drools:bgcolor="#ff6347" drools:selectable="true" name="">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
+      <bpmn2:terminateEventDefinition id="_HDH2E5pZEeOJYp17EmksGQ"/>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_2" drools:priority="1" sourceRef="_1801BDA4-C29D-4586-9445-5080EF577DF9" targetRef="_1174F797-8178-4A75-A95F-E4834D9C2456"/>
+    <bpmn2:startEvent id="StartEvent_1" name="Start Event 1">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Start Event 1]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_1">
+        <bpmn2:timeCycle xsi:type="bpmn2:tFormalExpression" id="FormalExpression_1">10s</bpmn2:timeCycle>
+      </bpmn2:timerEventDefinition>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_3" drools:priority="1" sourceRef="StartEvent_1" targetRef="_1801BDA4-C29D-4586-9445-5080EF577DF9"/>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="_HDH2FppZEeOJYp17EmksGQ">
+    <bpmndi:BPMNPlane id="_HDH2F5pZEeOJYp17EmksGQ" bpmnElement="starttimer-process">
+      <bpmndi:BPMNShape id="_HDH2GZpZEeOJYp17EmksGQ" bpmnElement="_1801BDA4-C29D-4586-9445-5080EF577DF9">
+        <dc:Bounds height="80.0" width="100.0" x="360.0" y="106.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="14.0" width="55.0" x="382.0" y="139.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_HDIdI5pZEeOJYp17EmksGQ" bpmnElement="_1174F797-8178-4A75-A95F-E4834D9C2456">
+        <dc:Bounds height="28.0" width="28.0" x="606.0" y="167.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_StartEvent_1" bpmnElement="StartEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="140.0" y="117.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="14.0" width="68.0" x="124.0" y="153.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="_HDH2GZpZEeOJYp17EmksGQ" targetElement="_HDIdI5pZEeOJYp17EmksGQ">
+        <di:waypoint xsi:type="dc:Point" x="460.0" y="146.0"/>
+        <di:waypoint xsi:type="dc:Point" x="620.0" y="146.0"/>
+        <di:waypoint xsi:type="dc:Point" x="620.0" y="167.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="SequenceFlow_3" sourceElement="BPMNShape_StartEvent_1" targetElement="_HDH2GZpZEeOJYp17EmksGQ">
+        <di:waypoint xsi:type="dc:Point" x="176.0" y="135.0"/>
+        <di:waypoint xsi:type="dc:Point" x="268.0" y="135.0"/>
+        <di:waypoint xsi:type="dc:Point" x="268.0" y="146.0"/>
+        <di:waypoint xsi:type="dc:Point" x="360.0" y="146.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
