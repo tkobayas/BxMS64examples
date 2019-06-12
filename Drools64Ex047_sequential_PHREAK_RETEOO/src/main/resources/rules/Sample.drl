@@ -1,0 +1,23 @@
+package com.sample
+ 
+import com.sample.MyFact;
+
+rule "Rule1"
+salience 100
+when
+   $fact : MyFact( field1 == false )
+then
+   System.out.println("Rule1 : " + $fact);
+   $fact.setField1(true);
+   update($fact);
+end
+
+rule "Rule2"
+salience 95
+when
+    $fact : MyFact( field1 == true )
+then
+    System.out.println("Rule2 : " + $fact);
+    update($fact);
+end
+
