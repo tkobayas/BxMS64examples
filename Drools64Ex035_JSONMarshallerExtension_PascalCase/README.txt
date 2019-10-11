@@ -1,4 +1,4 @@
-CAUTION: This extension affects whole kie-server operations so very risky. This is just for example
+CAUTION: This extension affects whole kie-server operations so very risky (= Client including business-central will need to use PascalCase). This is just for example
 
 USAGE:
 - Build a jar
