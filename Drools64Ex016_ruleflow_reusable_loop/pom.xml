@@ -13,7 +13,7 @@
   <description>A sample Drools Maven project</description>
 
   <properties>
-    <drools.version>6.5.0.Final-redhat-2</drools.version>
+    <drools.version>7.60.0.Final</drools.version>
 
   </properties>
 
